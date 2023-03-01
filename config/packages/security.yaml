@@ -37,6 +37,8 @@ security:
     # if role admin
         - { path: ^/api, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
+        # login page for all
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
 
 
