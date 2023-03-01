@@ -1,0 +1,63 @@
+{% extends 'page.html.twig' %}
+{% block title %}Content index{% endblock %}
+
+{% block body %}
+<div class="container-fluid  mt-4">
+    <h4>Liste des contenus</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                {# category #}
+                <th>Categorie</th>
+                {# end category #}
+                <th>H1</th>
+                <th>Slug</th>
+                <th>Visuel</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+            <tr>
+                <td>{{ content.id }}</td>
+                <td>{{ content.title }}</td>
+                <td>{{ content.description | raw }}</td>
+                {# category #}
+                <td>
+
+               {# loop categories #}
+                {% for category in content.categories %}
+                    {{ category.title }}
+                {% endfor %}
+
+                </td>
+                {# end category #}
+                <td>{{ content.h1 }}</td>
+                <td>{{ content.slug }}</td>
+                <td>
+                 {% if content.visuel %}
+                    <img src="{{ asset('upload/' ~ content.visuel) }}" alt="content.visuel" width="50px"/>
+                {% else %}
+                    Aucun visuel
+                {% endif %}
+                </td>
+                <td>
+                     <a class="btn btn-success" href="{{ path('app_content_show', {'id': content.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-warning"href="{{ path('app_content_edit', {'id': content.id}) }}"><i class="fa fa-pen"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucun contenu :(</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('app_content_new') }}">Créer un contenu</a>
+    </div>
+{% endblock %}

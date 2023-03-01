@@ -1,0 +1,18 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+  <div class="container  mt-4 p-4">
+   <h4>Edition de la catégorie</h4>
+
+
+    <a href="{{ path('app_category_index') }}" class="btn btn-primary btn-sm mb-2">Retour</a>
+        {{ include('category/_delete_form.html.twig') }}
+    {# form #}
+
+
+    {{ include('category/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+    </div>
+{% endblock %}

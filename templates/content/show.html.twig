@@ -1,0 +1,40 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}Content{% endblock %}
+
+{% block body %}
+<div class="container-fluid my-4 p-4 ">
+    <h4>Contenus</h4>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ content.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ content.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ content.description | raw }}</td>
+            </tr>
+            <tr>
+                <th>H1</th>
+                <td>{{ content.h1 }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ content.slug }}</td>
+            </tr>
+            <tr>
+                <th>Visuel</th>
+             <td><img src="/upload/{{ content.visuel }}" width="250px"/></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-sm btn-secondary" href="{{ path('app_content_index') }}">Retour</a>
+    </div>
+{% endblock %}

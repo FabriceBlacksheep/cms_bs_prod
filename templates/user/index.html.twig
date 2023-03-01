@@ -1,0 +1,62 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+<div class="container-fluid my-4 py-4 ">
+    <h4>Gestion des utilisateurs</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Roles</th>
+                {# <th>Mot de passe</th> #}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                {# nom #}
+                <td>{{ user.nom}}</td>
+                {# prenom #}
+                <td>{{ user.prenom }}</td>
+
+                {# <td>{{ user.roles ? user.roles|json_encode : '' }}</td> #}
+
+                {# bagde per role  #}
+                <td>
+                    {% for role in user.roles %}
+                        {% if role == 'ROLE_ADMIN' %}
+                            <span class="badge bg-danger">{{ role }}</span>
+                        {% elseif role == 'ROLE_USER' %}
+                            <span class="badge bg-dark">{{ role }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+
+                {# user password plain #}
+
+                {# <td>{{ user.password }}</td> #}
+                <td>
+                    <a class="btn btn-success btn-sm"  href="{{ path('app_user_show', {'id': user.id}) }}"><i class="fa fa-eye"></i> Voir</a>
+                    <a class="btn btn-warning btn-sm" href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa fa-pen"></i> Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">WTF !!! Aucun utilisateur ????</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary btn-sm" href="{{ path('app_user_new') }}"><i class="fa fa-plus"></i> Créer un utilisateur</a>
+</div>
+{% endblock %}

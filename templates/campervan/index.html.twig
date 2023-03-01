@@ -1,0 +1,61 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}Campervan index{% endblock %}
+
+{% block body %}
+<div class="container-fluid my-4 py-4 ">
+  <div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+<h4>Gestion des Campervans</h4>
+
+   <table class="table">
+        <thead>
+           <tr class="border-b">
+                <th>Id</th>
+                <th>IdLocpro</th>
+                <th>Nom</th>
+                <th>Modele</th>
+                <th>Description</th>
+                <th>Options</th>
+                <th>VisiteVirtuelle</th>
+                <th>Visuel</th>
+                <th>LienDescriptif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for campervan in campervans %}
+           <tr class="border-b">
+                  <td class="">{{ campervan.id }}</td>
+                  {# idLocpro #}
+                    <td class="">{{ campervan.idLocpro }}</td>
+                    {# idLocpro #}
+                  <td class="">{{ campervan.nom }}</td>
+                  <td class="">{{ campervan.modele }}</td>
+                  <td class=" max-w-[50%]">{{ campervan.description|striptags|slice(0, 50) }}</td>
+                  <td class="">{{ campervan.options ? campervan.options|join(', ') : '' }}</td>
+                  <td class="">{{ campervan.visiteVirtuelle }}</td>
+                  <td class=""><img src="/upload/{{ campervan.visuel }}" width="100px"/></td>
+                  <td class="">{{ campervan.lienDescriptif }}</td>
+                  <td class="">
+                    <a class="btn btn-success" href="{{ path('app_campervan_show', {'id': campervan.id}) }}"><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-warning"href="{{ path('app_campervan_edit', {'id': campervan.id}) }}"><i class="fa fa-pen"></i></a>
+                </td>
+            </tr>
+        {% else %}
+         <tr class="border-b">
+                <td colspan="9">Aucun Campervan</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="{{ path('app_campervan_new') }}">Créer</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

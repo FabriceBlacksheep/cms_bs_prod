@@ -1,0 +1,99 @@
+
+{{ form_start(form) }}
+<div class="row">
+
+<div class="col-4">
+
+{{ form_row(form.title) }}
+
+
+
+{{ form_row(form.title_EN) }}
+
+
+{{ form_row(form.title_DE) }}
+
+
+{{ form_row(form.title_NL) }}
+
+</div>
+
+<div class="col-4">
+
+{{ form_row(form.h1) }}
+
+
+
+{{ form_row(form.h1_EN) }}
+
+
+{{ form_row(form.h1_DE) }}
+
+
+{{ form_row(form.h1_NL) }}
+
+</div>
+
+<div class="col-4">
+
+{{ form_row(form.slug) }}
+
+
+
+{{ form_row(form.slug_EN) }}
+
+
+{{ form_row(form.slug_DE) }}
+
+
+{{ form_row(form.slug_NL) }}
+
+</div>
+
+<div class="col-12">
+
+{{ form_row(form.categories) }}
+
+
+</div>
+
+<div class="col-12">
+
+{{ form_row(form.visuel) }}
+
+
+</div>
+
+
+<div class="col-12">
+
+{{ form_row(form.description) }}
+
+
+</div>
+
+<div class="col-12">
+
+{{ form_row(form.description_EN) }}
+
+
+</div>
+
+<div class="col-12">
+
+{{ form_row(form.description_DE) }}
+
+
+</div>
+
+<div class="col-12">
+
+{{ form_row(form.description_NL) }}
+
+
+</div>
+
+
+    <button class="btn btn-sm btn-success mt-2">{{ button_label|default('Valider') }}</button>
+{# {{ form_end(form) }} #}
+{{ form_end(form) }}

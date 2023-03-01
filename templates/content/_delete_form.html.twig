@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('app_content_delete', {'id': content.id}) }}" onsubmit="return confirm('Poursuivre la suppression du contenu ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ content.id) }}">
+    <button class="btn btn-sm btn-danger btnDel"><i class="fa fa-trash"></i> Supprimer !</button>
+</form>
