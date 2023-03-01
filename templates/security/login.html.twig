@@ -42,7 +42,7 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-              <input type="submit" value="Connexion" class="btn btn-block btn-secondary">
+              <a href="#" class="btn btn-block btn-secondary loginBtn">CONNEXION</a>
 
             </form>
           </div>
@@ -53,12 +53,10 @@
 
   </div>
 <script>
-
-// alert on submit
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    console.log('Login');
-});
+    document.querySelector('.loginBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector('form').submit();
+    });
 </script>
 
 {% endblock %}
