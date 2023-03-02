@@ -52,7 +52,7 @@
 
             </form>
             {# a button to login #}
-<button  class="btn btn-block btn-success">
+<button  class="btn btn-block btn-primary">
      Connexion
 </button>
           </div>
@@ -64,11 +64,12 @@
   </div>
 
 <script>
-console.log('Login');
+
 
 {# native js submit form #}
 document.querySelector('button').addEventListener('click', function(e) {
     e.preventDefault();
+    console.log('Login');
     document.querySelector('form').submit();
 });
 
@@ -76,6 +77,5 @@ document.querySelector('button').addEventListener('click', function(e) {
 
 
 </script>
-   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 {% endblock %}
