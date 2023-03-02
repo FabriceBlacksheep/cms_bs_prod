@@ -116,7 +116,7 @@
             "php-includes": [],
             "php-fpm-config": [],
             "php-fpm-includes": [],
-            "nginx-includes": [],
+            "nginx-includes": ["nginx_app.conf"],
             "log-files": [],
             "compile": [],
             "new-relic": false,
