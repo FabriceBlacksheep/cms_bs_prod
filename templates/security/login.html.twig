@@ -70,7 +70,25 @@
 document.querySelector('button').addEventListener('click', function(e) {
     e.preventDefault();
     console.log('Login');
-    document.querySelector('form').submit();
+//    document.querySelector('form').submit();
+
+    // get the form data
+    var formData = new FormData(document.querySelector('form'));
+
+    // send the data to the server
+    fetch('/login', {
+        method: 'POST',
+        body: formData
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
 });
 
 
