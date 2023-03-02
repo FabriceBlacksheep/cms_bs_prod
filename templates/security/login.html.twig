@@ -69,26 +69,23 @@
 {# native js submit form #}
 document.querySelector('button').addEventListener('click', function(e) {
     e.preventDefault();
-    console.log('Login');
+
 //    document.querySelector('form').submit();
 
     // get the form data
     var formData = new FormData(document.querySelector('form'));
 
     // send the data to the server
-    fetch('/login', {
+    fetch('/loginJson', {
         method: 'POST',
         body: formData
     })
     .then(function(response) {
         return response.json();
     })
-    .then(function(data) {
-        console.log(data);
+    .then(function(response) {
+        console.log(response);
     })
-    .catch(function(error) {
-        console.error(error);
-    });
 });
 
 

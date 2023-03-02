@@ -16,8 +16,10 @@ security:
         main:
             lazy: true
             provider: app_user_provider
-            custom_authenticator: App\Security\LoginAuthAuthenticator
+            # custom_authenticator: App\Security\LoginAuthAuthenticator
             # access_denied_handler: App\Security\AccessDeniedHandler
+            json_login:
+                check_path: /loginJson
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -37,7 +39,6 @@ security:
     # if role admin
         - { path: ^/api, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
-        # login page for all
         # - { path: ^/admin, roles: ROLE_ADMIN }
 
 
