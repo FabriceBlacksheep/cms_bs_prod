@@ -107,7 +107,7 @@
         },
         "paas": {
             "php": "8.2.1",
-            "nginx-includes": ["nginx_app.conf"]
+            "nginx-includes": "nginx_app.conf"
           }
     },
     "require-dev": {
