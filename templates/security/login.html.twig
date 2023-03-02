@@ -46,14 +46,15 @@
     >
               {# <input type="submit" value="Connexion" class="btn btn-block btn-secondary"> #}
 
-{# a button to login #}
-<button type="submit" class="btn btn-block btn-primary">
-    <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'security.login.submit'|trans }}
-</button>
+
 
 
 
             </form>
+            {# a button to login #}
+<button  class="btn btn-block btn-success">
+     Connexion
+</button>
           </div>
         </div>
       </div>
@@ -64,7 +65,16 @@
 
 <script>
 console.log('Login');
-// alert on submit
+
+{# native js submit form #}
+document.querySelector('button').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('form').submit();
+});
+
+
+
+
 </script>
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
