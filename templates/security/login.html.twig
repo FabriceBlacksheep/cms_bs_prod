@@ -44,7 +44,10 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-              <input type="submit" value="Connexion" class="btn btn-block btn-secondary">
+              {# <input type="submit" value="Connexion" class="btn btn-block btn-secondary"> #}
+
+{# a link to login #}
+<a href="{{ path('app_login') }}">Connexion</a>
 
             </form>
           </div>
