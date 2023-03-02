@@ -106,21 +106,8 @@
             "require": "6.2.*"
         },
         "paas": {
-            "document-root": "",
-            "index-document": "public/index.php",
-            "engines": {
-              "nginx": "default"
-            },
-            "framework": "",
-            "php-config": [],
-            "php-includes": [],
-            "php-fpm-config": [],
-            "php-fpm-includes": [],
-            "nginx-includes": ["nginx_app.conf"],
-            "log-files": [],
-            "compile": [],
-            "new-relic": false,
-            "access-log-format": ""
+            "php": "8.2.1",
+            "nginx-includes": ["nginx_app.conf"]
           }
     },
     "require-dev": {
