@@ -104,7 +104,24 @@
         "symfony": {
             "allow-contrib": false,
             "require": "6.2.*"
-        }
+        },
+        "paas": {
+            "document-root": "",
+            "index-document": "public/index.php",
+            "engines": {
+              "nginx": "default"
+            },
+            "framework": "",
+            "php-config": [],
+            "php-includes": [],
+            "php-fpm-config": [],
+            "php-fpm-includes": [],
+            "nginx-includes": [],
+            "log-files": [],
+            "compile": [],
+            "new-relic": false,
+            "access-log-format": ""
+          }
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",
