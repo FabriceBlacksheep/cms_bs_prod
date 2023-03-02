@@ -7,8 +7,6 @@
 
   <body>
 
-  {# block script #}
-
 
   <div class="d-lg-flex half">
     <div class="bg order-1 order-md-2" style="background-image: url('/img/bgapp.jpg');"></div>
@@ -44,17 +42,9 @@
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-              {# <input type="submit" value="Connexion" class="btn btn-block btn-secondary"> #}
-
-
-
-
+              <input type="submit" value="Connexion" class="btn btn-block btn-secondary">
 
             </form>
-            {# a button to login #}
-<button  class="btn btn-block btn-primary">
-     Connexion
-</button>
           </div>
         </div>
       </div>
@@ -63,34 +53,5 @@
 
   </div>
 
-<script>
-
-
-{# native js submit form #}
-document.querySelector('button').addEventListener('click', function(e) {
-    e.preventDefault();
-
-//    document.querySelector('form').submit();
-
-    // get the form data
-    var formData = new FormData(document.querySelector('form'));
-
-    // send the data to the server
-    fetch('/loginJson', {
-        method: 'POST',
-        body: formData
-    })
-    .then(function(response) {
-        return response.json();
-    })
-    .then(function(response) {
-        console.log(response);
-    })
-});
-
-
-
-
-</script>
 
 {% endblock %}
