@@ -46,8 +46,12 @@
     >
               {# <input type="submit" value="Connexion" class="btn btn-block btn-secondary"> #}
 
-{# a link to login #}
-<a href="{{ path('app_login') }}">Connexion</a>
+{# a button to login #}
+<button type="submit" class="btn btn-block btn-primary">
+    <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'security.login.submit'|trans }}
+</button>
+
+
 
             </form>
           </div>
