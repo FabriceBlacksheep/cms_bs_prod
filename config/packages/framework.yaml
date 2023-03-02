@@ -5,7 +5,7 @@ framework:
     http_method_override: false
     handle_all_throwables: true
     #trusted_proxies:
-    trusted_proxies: '%env(TRUSTED_PROXIES)%'
+    trusted_proxies: '127.0.0.1,REMOTE_ADDR'
 
 
 
