@@ -1,5 +1,14 @@
 <?php
 
+$ip = $_SERVER['REMOTE_ADDR'];
+// get host name
+$host = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+
+var_dump($ip);
+
+die();
+
+
 use App\Kernel;
 
 
