@@ -55,6 +55,7 @@
         "twig/twig": "^2.12|^3.0",
         "vich/uploader-bundle": "^2.0"
     },
+
     "config": {
         "allow-plugins": {
             "symfony/flex": true,
@@ -107,7 +108,13 @@
         },
         "paas": {
             "php": "8.2.1",
-            "nginx-includes": "nginx_app.conf"
+            "nginx-includes": "site.conf",
+            "nginx-rewrite": "true",
+            "nginx-rewrite-index": "index.php",
+            "nginx-rewrite-root": "/",
+            "nginx-rewrite-try-files": "$uri $uri/ /index.php?$query_string",
+            "nginx-rewrite-try-files-index": "index.php"
+
           }
     },
     "require-dev": {
@@ -119,4 +126,5 @@
         "symfony/stopwatch": "6.2.*",
         "symfony/web-profiler-bundle": "6.2.*"
     }
+
 }
