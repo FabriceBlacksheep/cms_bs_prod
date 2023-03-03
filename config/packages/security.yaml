@@ -35,7 +35,7 @@ security:
     # redirect to login if note logged in
 
     # if role admin
-        - { path: ^/api, roles: ROLE_ADMIN }
+        # - { path: ^/api, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_ADMIN }
         # - { path: ^/admin, roles: ROLE_ADMIN }
 
