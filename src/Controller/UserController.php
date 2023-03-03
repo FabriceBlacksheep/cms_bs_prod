@@ -57,20 +57,39 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
-    public function show(User $user): Response
+    public function show(User $user, Request $request, UserRepository $userRepository): Response
     {
+
+        // get id from url
+        $id = $request->attributes->get('id');
+        // getUserById
+        $userShow = $userRepository->getUserById($id);
+
+        // dd($user);
+
         return $this->render('user/show.html.twig', [
-            'user' => $user,
+            'userShow' => $userShow,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
+
+
+
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // associate agence to user
+            $user->addAgence($form->get('agence')->getData());
+
+
             $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);

@@ -3,11 +3,19 @@
 namespace App\Form;
 
 use App\Entity\User;
+// Agence
+use App\Entity\Agence;
+
+
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\CallbackTransformer;
+// entity type
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 
 class UserType extends AbstractType
@@ -52,6 +60,28 @@ class UserType extends AbstractType
                   'Webmaster' => 'ROLE_WEBMASTER',
                 ],
             ])
+
+
+                // agence choice
+                ->add('agence', EntityType::class, [
+                    // mapped => false
+                    'label' => 'Choisir une agence',
+                    'mapped' => false,
+                    'class' => Agence::class,
+                    // choice label nom et prenom
+                    // 'choice_label' => 'nom',
+                    'choice_label' => 'nom',
+                    // expanded => true
+                    'expanded' => false,
+
+                    "required" => true,
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ])
+
+
+
             ->add('password', null, [
                 'label' => 'Mot de passe',
                 'attr' => [
@@ -59,6 +89,7 @@ class UserType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+
         ;
 
         // Data transformer
