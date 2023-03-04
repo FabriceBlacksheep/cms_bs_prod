@@ -90,6 +90,12 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
 
+        // get id from url
+        $id = $request->attributes->get('id');
+        // getUserById
+        $userTodelete = $userRepository->getUserById($id);
+
+
 
 
 
@@ -113,11 +119,6 @@ class UserController extends AbstractController
                 }
             }
 
-
-
-
-
-
             $userRepository->save($user, true);
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
@@ -126,6 +127,7 @@ class UserController extends AbstractController
         return $this->renderForm('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
+            'userTodelete' => $userTodelete
         ]);
     }
 

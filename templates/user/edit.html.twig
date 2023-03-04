@@ -6,8 +6,16 @@
 <div class="container  mt-4 p-4">
     <h4>Edition de l'utilisateur</h4>
 
+
+
     <a href="{{ path('app_user_index') }}" class="btn btn-primary btn-sm mb-2">Retour</a>
-        {{ include('user/_delete_form.html.twig') }}
+        {# {{ include('user/_delete_form.html.twig') }} #}
+    {# a link to delete currrent user if rom url #}
+<form method="post" action="{{ path('app_user_delete', {'id': userTodelete.id}) }}" onsubmit="return confirm('Poursuivre la suppression de cet utilisateur ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ userTodelete.id) }}">
+    <button class="btn btn-danger btnDel btn-sm mb-4"><i class="fa fa-trash"></i> Supprimer !?</button>
+    <br/>
+</form>
     {# form #}
 
 
