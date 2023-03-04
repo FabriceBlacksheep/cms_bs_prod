@@ -66,13 +66,15 @@ class UserType extends AbstractType
                 ->add('agence', EntityType::class, [
                     // mapped => false
                     'label' => 'Choisir une agence',
-                    'mapped' => false,
+                    'mapped' => true,
+                    // multiple => true
+                    'multiple' => true,
                     'class' => Agence::class,
                     // choice label nom et prenom
                     // 'choice_label' => 'nom',
                     'choice_label' => 'nom',
                     // expanded => true
-                    'expanded' => false,
+                    'expanded' => true,
 
                     "required" => true,
                     'attr' => [

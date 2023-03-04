@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -42,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToMany(targetEntity: Agence::class, inversedBy: 'users')]
     private Collection $Agence;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $LastLogIn = null;
 
 
         //  public to string return email
@@ -170,9 +174,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    // setAgence type App\Entity\Agence
+    public function setAgence(Agence $agence): self
+    {
+        $this->Agence = $agence;
+
+        return $this;
+    }
+
     public function removeAgence(Agence $agence): self
     {
         $this->Agence->removeElement($agence);
+
+        return $this;
+    }
+
+    public function getLastLogIn(): ?\DateTimeInterface
+    {
+        return $this->LastLogIn;
+    }
+
+    public function setLastLogIn(?\DateTimeInterface $LastLogIn): self
+    {
+        $this->LastLogIn = $LastLogIn;
 
         return $this;
     }

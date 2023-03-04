@@ -14,6 +14,10 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use Symfony\Component\Security\Core\User\UserInterface;
+// entity manager
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 class LoginAuthAuthenticator extends AbstractLoginFormAuthenticator
 {
@@ -45,6 +49,9 @@ class LoginAuthAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+
+
+        // declare public function to get user and entity manager
 
         // redirect to home route after login
         return new RedirectResponse($this->urlGenerator->generate('app_home'));

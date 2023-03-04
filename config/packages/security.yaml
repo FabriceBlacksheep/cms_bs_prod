@@ -17,7 +17,9 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\LoginAuthAuthenticator
+            # entry_point: App\Security\AuthenticationEntryPoint
             # access_denied_handler: App\Security\AccessDeniedHandler
+
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -35,8 +37,9 @@ security:
     # redirect to login if note logged in
 
     # if role admin
-        # - { path: ^/api, roles: ROLE_ADMIN }  A DECOMMENTER POUR FORCER L'AUTHENTIFICATION SUR LES API
+        # - { path: ^/api, roles: ROLE_ADMIN }  A DECOMMENTER POUR FORCER
         - { path: ^/user, roles: ROLE_ADMIN }
+        - { path: ^/agence, roles: ROLE_ADMIN }
         # - { path: ^/admin, roles: ROLE_ADMIN }
 
 

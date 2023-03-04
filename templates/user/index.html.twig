@@ -14,6 +14,7 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Roles</th>
+                <th>Dernière connexion</th>
                 {# <th>Mot de passe</th> #}
                 <th>Actions</th>
             </tr>
@@ -37,9 +38,19 @@
                             <span class="badge bg-danger">{{ role }}</span>
                         {% elseif role == 'ROLE_USER' %}
                             <span class="badge bg-info">{{ role }}</span>
+                                                {% elseif role == 'ROLE_WEBMASTER' %}
+                            <span class="badge bg-warning">{{ role }}</span>
                         {% endif %}
                     {% endfor %}
                 </td>
+
+                {# last login #}
+                <td>
+                    {% if user.lastLogin %}
+                        {{ user.lastLogin|date('Y-m-d H:i:s') }}
+                    {% else %}
+                        Jamais
+                    {% endif %}
 
                 {# user password plain #}
 
@@ -58,5 +69,8 @@
     </table>
 
     <a class="btn btn-secondary btn-sm" href="{{ path('app_user_new') }}"><i class="fa fa-plus"></i> Créer un utilisateur</a>
+
+
+
 </div>
 {% endblock %}

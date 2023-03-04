@@ -11,9 +11,6 @@ class AccessDeniedHandler implements AccessDeniedHandlerInterface
     public function handle(Request $request, AccessDeniedException $accessDeniedException): ?Response
     {
         // ...
-        $content = $this->twig->render('security/access_denied.html.twig', [
-            'current_menu' => 'access_denied',
-        ]);
 
         return new Response($content, 403);
     }

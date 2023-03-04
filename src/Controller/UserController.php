@@ -32,6 +32,20 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+                       // if agence chosen
+                       if($form->get('agence')->getData() != null){
+                        // get agence chosen
+                        $agence = $form->get('agence')->getData();
+                        // set agence to user
+                        // pass argument App\Entity\Agence
+                     //loop through agence
+                        foreach($agence as $agence){
+                            // add agence to user
+                            $user->addAgence($agence);
+                        }
+                    }
+
+
                     // encode the plain password
                     $user->setPassword(
                         $userPasswordHasher->hashPassword(
@@ -86,8 +100,22 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // associate agence to user
-            $user->addAgence($form->get('agence')->getData());
+           // if agence chosen
+            if($form->get('agence')->getData() != null){
+                // get agence chosen
+                $agence = $form->get('agence')->getData();
+                // set agence to user
+                // pass argument App\Entity\Agence
+             //loop through agence
+                foreach($agence as $agence){
+                    // add agence to user
+                    $user->addAgence($agence);
+                }
+            }
+
+
+
+
 
 
             $userRepository->save($user, true);
