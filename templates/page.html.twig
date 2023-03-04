@@ -933,6 +933,10 @@
 										</span>
 										<!--end:Menu link-->
 										<!--begin:Menu sub-->
+
+
+{% if app.user.roles[0] == 'ROLE_ADMIN' %}
+
 										<div class="menu-sub menu-sub-accordion">
 											<!--begin:Menu item-->
 											<div class="menu-item">
@@ -961,6 +965,43 @@
 											<!--begin:Menu item-->
 											<!--end:Menu item-->
 										</div>
+
+{% else %}
+										<div class="menu-sub menu-sub-accordion">
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link" href="{{ path('app_user_show', {'id': user.id}) }}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Voir mon profil</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+											<!--begin:Menu item-->
+
+											<!--end:Menu item-->
+											<!--begin:Menu item-->
+											<!--end:Menu item-->
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endif %}
+
+
+
+
 										<!--end:Menu sub-->
 									</div>
 									<!--end:Menu item-->
