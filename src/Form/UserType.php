@@ -15,6 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\CallbackTransformer;
 // entity type
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+// FileType
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 
 
@@ -23,6 +26,19 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+        // PictureProfile file type
+        ->add('PictureProfile', FileType::class, [
+            'data_class' => null,
+            'mapped' => false,
+            'required' => false,
+            'label' => 'Image de profil',
+            'attr' => [
+                'class' => 'form-control',
+            ],
+        ])
+
+
             ->add('email', null, [
                 'label' => 'Email',
                 'attr' => [
@@ -46,6 +62,17 @@ class UserType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+
+            // telephone
+            ->add('Phone', null, [
+                'label' => 'Telephone',
+                'attr' => [
+                    'placeholder' => 'Telephone',
+                    'class' => 'form-control',
+                ],
+            ])
+
+
             ->add('roles', ChoiceType::class, [
                 'required' => true,
                 'label' => 'Role',

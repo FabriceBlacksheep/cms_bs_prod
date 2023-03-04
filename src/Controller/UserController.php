@@ -18,10 +18,25 @@ class UserController extends AbstractController
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
+// if user role is ROLE_ADMIN
+        if($this->getUser()->getRoles()[0] == 'ROLE_ADMIN'){
+            // get all users
+            $users = $userRepository->findAll();
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
+
+    }else{
+        // get user by id
+        $users = $userRepository->getUserById($this->getUser()->getId());
+        return $this->render('error.html.twig', [
+            'users' => $users,
+        ]);
+
+
     }
+
+}
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
@@ -31,6 +46,23 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // get PictureProfile from form
+            $pictureProfile = $form->get('PictureProfile')->getData();
+
+            // if pictureProfile is not null
+            if($pictureProfile != null){
+                // generate a unique name for the file before saving it
+                $fileName = md5(uniqid()).'.'.$pictureProfile->guessExtension();
+                // move the file to the directory where brochures are stored
+                $pictureProfile->move(
+                    $this->getParameter('kernel.project_dir').'/public/upload',
+                    $fileName
+                );
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $user->setPictureProfile($fileName);
+            }
 
                        // if agence chosen
                        if($form->get('agence')->getData() != null){
@@ -95,7 +127,7 @@ class UserController extends AbstractController
         // getUserById
         $userTodelete = $userRepository->getUserById($id);
 
-
+        //
 
 
 
@@ -105,6 +137,29 @@ class UserController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+                  // get PictureProfile from form
+                  $pictureProfile = $form->get('PictureProfile')->getData();
+
+                  // if pictureProfile is not null
+                  if($pictureProfile != null){
+                      // generate a unique name for the file before saving it
+                      $fileName = md5(uniqid()).'.'.$pictureProfile->guessExtension();
+                      // move the file to the directory where brochures are stored
+                      $pictureProfile->move(
+                          $this->getParameter('kernel.project_dir').'/public/upload',
+                          $fileName
+                      );
+                      // updates the 'brochureFilename' property to store the PDF file name
+                      // instead of its contents
+                      $user->setPictureProfile($fileName);
+                  }
+
+
+
+
 
            // if agence chosen
             if($form->get('agence')->getData() != null){

@@ -38,7 +38,7 @@ security:
 
     # if role admin
         # - { path: ^/api, roles: ROLE_ADMIN }  A DECOMMENTER POUR FORCER
-        - { path: ^/user, roles: ROLE_ADMIN }
+        # - { path: ^/user, roles: ROLE_ADMIN }
         - { path: ^/agence, roles: ROLE_ADMIN }
         # - { path: ^/admin, roles: ROLE_ADMIN }
 

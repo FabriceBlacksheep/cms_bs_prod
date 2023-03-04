@@ -87,7 +87,21 @@
 															<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
 																<a href="{{ path('app_user_show', {'id': user.id}) }}">
 																	<div class="symbol-label">
-																		<img src="user img" alt="" class="w-100">
+
+{# if PictureProfile #}
+ {% if user.PictureProfile is defined %}
+ {% if user.PictureProfile is not null %}
+																		<img src="{{ asset('upload/' ~ user.pictureProfile) }}" alt="" class="w-100">
+
+	   {% else %}
+
+																		<img src="{{ asset('img/profileDefault.jpg') }}" alt="" class="w-100">
+    {% endif %}
+                                                            {% endif %}
+
+
+
+
 																	</div>
 																</a>
 															</div>
@@ -97,6 +111,11 @@
 																<a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-gray-800 text-hover-primary mb-1">
                                                                 {{user.prenom}} {{user.nom}}</a>
 																<span>{{user.email}}</span>
+
+{% if user.phone is not null %}
+ <a href="tel:{{user.phone}}"><i class="fa fa-phone"></i> {{user.phone}}</a>
+{% endif %}
+
 															</div>
 															<!--begin::User details-->
 														</td>
@@ -121,7 +140,9 @@
 
                                                             {% if user.LastLogIn is defined %}
                                                             {% if user.LastLogIn is not null %}
-                                                            {{user.lastLogin|date('d/m/Y')}}
+															{# lastLogin date d/m/y h m s #}
+
+                                                            {{user.lastLogin|date('d/m/Y - H:i:s')}}
                                                             {% else %}
                                                             {{ 'Pas de connexion' }}
                                                            {% endif %}

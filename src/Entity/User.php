@@ -47,6 +47,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $LastLogIn = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $PictureProfile = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Phone = null;
+
 
         //  public to string return email
         public function getIdentite(): string
@@ -197,6 +203,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastLogIn(?\DateTimeInterface $LastLogIn): self
     {
         $this->LastLogIn = $LastLogIn;
+
+        return $this;
+    }
+
+    public function getPictureProfile(): ?string
+    {
+        return $this->PictureProfile;
+    }
+
+    public function setPictureProfile(?string $PictureProfile): self
+    {
+        $this->PictureProfile = $PictureProfile;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->Phone;
+    }
+
+    public function setPhone(?string $Phone): self
+    {
+        $this->Phone = $Phone;
 
         return $this;
     }
