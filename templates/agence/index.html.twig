@@ -102,11 +102,11 @@
 
 
 
-        <div class="col-6 mb-4">
-        <a class="btn btn-sm btn-success pull-right" href="{{ path('app_agence_new') }}"><i class="fa fa-plus"></i> Ajouter</a>
+        <div class="col mb-4">
+        <a class="btn btn-sm btn-primary pull-right" href="{{ path('app_agence_new') }}"><i class="fa fa-plus"></i> Ajouter</a>
         </div>
 
-             <div class="col-6 mb-4">
+             <div class="col-11 mb-4">
        {# input search #}
         <form action="{{ path('app_agence_search') }}" method="get">
             <div class="input-group mb-3">
@@ -124,7 +124,7 @@
                 <div class="card card-flush h-xl-100 ribbon ribbon-top ribbon-vertical">
 
                   {% if agence.active == 0 %}
-                                                                                  <div class="ribbon-label bg-success">ACTIVE</div>
+                                                                                  <div class="ribbon-label bg-primary">ACTIVE</div>
                                                                     {% else %}
                                                                                 <div class="ribbon-label bg-danger">INACTIVE</div>
                                                                     {% endif %}

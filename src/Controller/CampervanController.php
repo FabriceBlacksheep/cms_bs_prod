@@ -50,6 +50,20 @@ class CampervanController extends AbstractController
 
 
 
+           // if agence chosen
+           if($form->get('agence')->getData() != null){
+            // get agence chosen
+            $agence = $form->get('agence')->getData();
+            // set agence to user
+            // pass argument App\Entity\Agence
+         //loop through agence
+            foreach($agence as $agence){
+                // add agence to user
+                $campervan->addAgence($agence);
+            }
+        }
+
+
 
 
             $campervanRepository->save($campervan, true);
@@ -102,6 +116,20 @@ class CampervanController extends AbstractController
 }
 
 
+
+
+           // if agence chosen
+           if($form->get('agence')->getData() != null){
+            // get agence chosen
+            $agence = $form->get('agence')->getData();
+            // set agence to user
+            // pass argument App\Entity\Agence
+         //loop through agence
+            foreach($agence as $agence){
+                // add agence to user
+                $campervan->addAgence($agence);
+            }
+        }
 
 
 

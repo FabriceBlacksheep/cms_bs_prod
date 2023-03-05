@@ -10,7 +10,7 @@
 
     <a class="btn btn-primary mb-4" href="{{ path('app_agence_index') }}"><i class="fa fa-arrow-left"></i> Retour</a>
 
-<div class="card card-flush h-lg-100" id="kt_contacts_main">
+<div class="card card-flush h-lg-100 mb-4" id="kt_contacts_main">
 												<!--begin::Card header-->
 												<div class="card-header pt-7" id="kt_chat_contacts_header">
 													<!--begin::Card title-->
@@ -144,6 +144,7 @@
 																<!--begin::Svg Icon | path: icons/duotune/electronics/elc003.svg-->
 																<span class="svg-icon svg-icon-2">
 <i class="fa-solid fa-house-flag"></i>
+
 																</span>
 																<!--end::Svg Icon-->
 																                {% for type in agence.type %}
@@ -268,4 +269,110 @@
 
     {# {{ include('agence/_delete_form.html.twig') }} #}
     </div>
+
+{# CAMPERVANS BY AGENCE #}
+
+
+
+    <div class="container-fluid mt-12">
+        <div class="row" id="list">
+
+
+
+<h1 style="font-weight:300">Campervans disponibles</h1>
+
+
+
+         {% for campervan in agence.campervans %}
+            <div class="col-md-6 col-lg-3 col-sm-6 col-xs-6 {{ campervan.nom }} mb-4 filtered">
+                <div class="card card-flush h-xl-100 ribbon ribbon-top ribbon-vertical">
+
+                  {# {% if agence.active == 0 %}
+                                                                                  <div class="ribbon-label bg-primary">ACTIVE</div>
+                                                                    {% else %}
+                                                                                <div class="ribbon-label bg-danger">INACTIVE</div>
+                                                                    {% endif %} #}
+<div class="ribbon-label bg-info">{{ campervan.price}}</div>
+
+												<!--begin::Body-->
+												<div class="card-body text-center pb-5">
+
+
+													<!--begin::Overlay-->
+													<a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="{{ asset('upload/' ~ campervan.visuel) }}">
+														<!--begin::Image-->
+
+                                                                   {% if campervan.visuel %}
+
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded mb-7" style="height: 266px;background-image:url('{{ asset('upload/' ~ campervan.visuel) }}')"></div>
+
+                                                                    {% else %}
+                                                                        Aucun visuel
+                                                                    {% endif %}
+
+
+                                                        <!--end::Image-->
+														<!--begin::Action-->
+														<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+															<i class="bi bi-eye-fill fs-2x text-white"></i>
+														</div>
+														<!--end::Action-->
+													</a>
+													<!--end::Overlay-->
+													<!--begin::Info-->
+													<div class="d-flex align-items-end flex-stack mb-1">
+														<!--begin::Title-->
+														<div class="text-start">
+                            <span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-4 d-block text-uppercase">{{ campervan.nom }}</span>
+															<span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-4 d-block">{{ campervan.modele }}</span>
+															{# <span class="text-gray-400 mt-1 fw-bold fs-6">{{ agence.description|striptags|slice(0, 50) }}</span> #}
+                                                            {# descripttion html format #}
+
+
+														</div>
+														<!--end::Title-->
+														<!--begin::Total-->
+
+														<!--end::Total-->
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::Body-->
+												<!--begin::Footer-->
+												<div class="card-footer d-flex flex-stack pt-0">
+													<!--begin::Link-->
+													<a class="btn btn-sm btn-primary flex-shrink-0 me-2" href="{{ path('app_campervan_show', {'id': campervan.id}) }}" ><i class="fa fa-eye"></i> Consulter</a>
+													<a class="btn btn-sm btn-danger flex-shrink-0 me-2" href="{{ path('app_campervan_edit', {'id': campervan.id}) }}" ><i class="fa fa-pen"></i> Modifier</a>
+
+                                                    <!--end::Link-->
+													<!--begin::Link-->
+
+													<!--end::Link-->
+												</div>
+												<!--end::Footer-->
+											</div>
+            </div>
+        {% else %}
+
+               Aucun Campervan :(
+
+        {% endfor %}
+
+
+
+    </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
 {% endblock %}

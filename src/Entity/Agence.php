@@ -94,9 +94,13 @@ class Agence
     #[ORM\Column(nullable: true)]
     private ?float $Latitude = null;
 
+    #[ORM\ManyToMany(targetEntity: Campervan::class, mappedBy: 'Agence')]
+    private Collection $campervans;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->campervans = new ArrayCollection();
     }
 
 
@@ -363,6 +367,33 @@ class Agence
     public function getAdresseAgence(): ?Adresse
     {
         return $this->Adresse;
+    }
+
+    /**
+     * @return Collection<int, Campervan>
+     */
+    public function getCampervans(): Collection
+    {
+        return $this->campervans;
+    }
+
+    public function addCampervan(Campervan $campervan): self
+    {
+        if (!$this->campervans->contains($campervan)) {
+            $this->campervans->add($campervan);
+            $campervan->addAgence($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCampervan(Campervan $campervan): self
+    {
+        if ($this->campervans->removeElement($campervan)) {
+            $campervan->removeAgence($this);
+        }
+
+        return $this;
     }
 
 

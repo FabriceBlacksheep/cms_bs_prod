@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CampervanRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 // Api Platform
@@ -52,6 +53,17 @@ class Campervan
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description_NL = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Price = null;
+
+    #[ORM\ManyToMany(targetEntity: Agence::class, inversedBy: 'campervans')]
+    private Collection $Agence;
+
+    public function __construct()
+    {
+        $this->Agence = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -186,6 +198,42 @@ class Campervan
     public function setDescriptionNL(?string $description_NL): self
     {
         $this->description_NL = $description_NL;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->Price;
+    }
+
+    public function setPrice(?string $Price): self
+    {
+        $this->Price = $Price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Agence>
+     */
+    public function getAgence(): Collection
+    {
+        return $this->Agence;
+    }
+
+    public function addAgence(Agence $agence): self
+    {
+        if (!$this->Agence->contains($agence)) {
+            $this->Agence->add($agence);
+        }
+
+        return $this;
+    }
+
+    public function removeAgence(Agence $agence): self
+    {
+        $this->Agence->removeElement($agence);
 
         return $this;
     }
