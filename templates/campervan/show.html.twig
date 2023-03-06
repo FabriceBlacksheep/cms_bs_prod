@@ -3,54 +3,502 @@
 {% block title %}Campervan{% endblock %}
 
 {% block body %}
+<div id="kt_app_content" class="app-content flex-column-fluid">
+								<!--begin::Content container-->
+								<div id="kt_app_content_container" class="app-container container-xxl">
+									<!--begin::Form-->
+									<div id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" data-kt-redirect="../../demo1/dist/apps/ecommerce/catalog/products.html">
+										<!--begin::Aside column-->
+										<div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+										<div class="card card-flush py-4 bg-info">
+												<!--begin::Card header-->
+												<div class="card-header">
+													<!--begin::Card title-->
+													<div class="card-title">
+														<h2 class=" text-center">{{ campervan.nom }}</h2>
 
-<div class="container  mt-4 p-4">
+													</div>
+													<!--end::Card title-->
+												</div>
+												<!--end::Card header-->
+												<!--begin::Card body-->
+												<div class="card-body text-center pt-0">
+													<!--begin::Image input-->
+													<div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
+														<!--begin::Preview existing avatar-->
+														<div class="image-input-wrapper w-150px h-150px" style="background-image: url(/upload/{{ campervan.visuel }})"></div>
+														<!--end::Preview existing avatar-->
+														<!--begin::Label-->
 
-    <h4>Campervan</h4>
+														<!--end::Label-->
 
-    <a class="btn btn-sm btn-secondary" href="{{ path('app_campervan_index') }}">Retour</a>
-        {{ include('campervan/_delete_form.html.twig') }}
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ campervan.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ campervan.nom }}</td>
-            </tr>
-            <tr>
-                <th>Modele</th>
-                <td>{{ campervan.modele }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ campervan.description|raw }}</td>
-            </tr>
-            <tr>
-                <th>Options</th>
-                <td>{{ campervan.options ? campervan.options|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>VisiteVirtuelle</th>
-                <td>{{ campervan.visiteVirtuelle }}</td>
-            </tr>
-            <tr>
-                <th>Visuel</th>
-                <td><img src="/upload/{{ campervan.visuel }}" width="200px"></td>
-            </tr>
-            <tr>
-                <th>LienDescriptif</th>
-                <td>{{ campervan.lienDescriptif }}</td>
-            </tr>
-        </tbody>
-    </table>
+													</div>
+													<!--end::Image input-->
+													<!--begin::Description-->
+													<div class="fs-7">{{ campervan.modele }}</div>
+													<a class="btn btn-danger mt-4" href="{{ path('app_campervan_edit', {'id': campervan.id}) }}">Modifier</a>
+													<!--end::Description-->
+												</div>
+												<!--end::Card body-->
+											</div>
+
+	                                        <div class="card card-flush py-4 bg-info">
+												<!--begin::Card header-->
 
 
-    <a class="btn btn-sm btn-success" href="{{ path('app_campervan_edit', {'id': campervan.id}) }}">Modifier</a>
+												<!--end::Card header-->
+												<!--begin::Card body-->
+												<div class="card-body text-center pt-0 mt-2">
+													<!--begin::Image input-->
+
+
+													<!--end::Image input-->
+													<!--begin::Description-->
+													<h1>{{ campervan.price }}</h1>
+													<!--end::Description-->
+												</div>
+												<!--end::Card body-->
+											</div>
+
+										</div>
+										<!--end::Aside column-->
+										<!--begin::Main column-->
+										<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+											<!--begin:::Tabs-->
+											<ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2" role="tablist">
+												<!--begin:::Tab item-->
+												<li class="nav-item" role="presentation">
+													<a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#Déscription" aria-selected="true" role="tab">Déscription</a>
+												</li>
+												<!--end:::Tab item-->
+												<!--begin:::Tab item-->
+												<li class="nav-item" role="presentation">
+													<a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#Caractéristiques" aria-selected="false" role="tab" tabindex="-1">Caractéristiques</a>
+												</li>
+												<!--end:::Tab item-->
+												<!--begin:::Tab item-->
+												<li class="nav-item" role="presentation">
+													<a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#Options" aria-selected="false" role="tab" tabindex="-1">Options</a>
+												</li>
+
+                                                <li class="nav-item" role="presentation">
+													<a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#Disponiblités" aria-selected="false" role="tab" tabindex="-1">Disponiblités</a>
+												</li>
+												<!--end:::Tab item-->
+											</ul>
+											<!--end:::Tabs-->
+											<!--begin::Tab content-->
+											<div class="tab-content">
+												<!--begin::Tab pane-->
+												<div class="tab-pane fade active show" id="Déscription" role="tab-panel">
+													<div class="d-flex flex-column gap-7 gap-lg-10">
+														<!--begin::General options-->
+														<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Déscription</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+
+																<!--end::Input group-->
+																<!--begin::Input group-->
+																<div>
+																	<!--begin::Description-->
+                                                                {# {{ campervan.description|raw }} #}
+
+                                                    <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-bs-toggle="tab" href="#kt_tab_pane_1"><i class="fas fa-flag"></i> Français</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2"><i class="fas fa-flag"></i> Anglais</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3"><i class="fas fa-flag"></i> Allemand</a>
+                                                        </li>
+                                                            <li class="nav-item">
+                                                            <a class="nav-link" data-bs-toggle="tab" href="#kt_tab_pane_4"><i class="fas fa-flag"></i> Néerlandais</a>
+                                                        </li>
+                                                    </ul>
+
+                                                        <div class="tab-content" id="myTabContent">
+                                                            <div class="tab-pane fade show active" id="kt_tab_pane_1" role="tabpanel">
+                                                            {{ campervan.description|raw }}
+                                                            </div>
+                                                            <div class="tab-pane fade" id="kt_tab_pane_2" role="tabpanel">
+                                                            {{ campervan.descriptionEN|raw }}
+                                                            </div>
+                                                            <div class="tab-pane fade" id="kt_tab_pane_3" role="tabpanel">
+                                                                {{ campervan.descriptionDE|raw }}
+                                                            </div>
+                                                                <div class="tab-pane fade" id="kt_tab_pane_4" role="tabpanel">
+                                                            {{ campervan.descriptionNL|raw }}
+                                                            </div>
+                                                        </div>
+
+																	<!--end::Description-->
+																</div>
+
+																<!--end::Input group-->
+															</div>
+															<!--end::Card header-->
+														</div>
+														<!--end::General options-->
+														<!--begin::Media-->
+														<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Fiche technique</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+																	<!--begin::Lien fiche tech PDF-->
+                                                                    <div class="symbol symbol-60px mb-5">
+															<img src="./../assets/media/svg/files/pdf.svg" class="theme-light-show" alt="">
+															<img src="./../assets/media/svg/files/pdf-dark.svg" class="theme-dark-show" alt="">
+														            </div>
+                                                                    <a href="{{ campervan.lienDescriptif }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> {{ campervan.lienDescriptif }}</a>
+
+																	<!--end::Lien fiche tech PDF-->
+																</div>
+																<!--end::Input group-->
+																<!--begin::Description-->
+																<div class="text-muted fs-7">Télécharger la fiche technique du Campervan ci-dessus</div>
+																<!--end::Description-->
+															</div>
+															<!--end::Card header-->
+														</div>
+														<!--end::Media-->
+														<!--begin::Visite virtuelle-->
+														<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Visite virtuelle</h2>
+
+
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+																	<!--begin::Lien visite virtuelle-->
+                                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                                        <iframe class="embed-responsive-item" src="{{ campervan.visiteVirtuelle }}" height="600" width="100%" allowfullscreen></iframe>
+                                                                    </div>
+
+																	<!--end::Lien visite virtuelle-->
+																</div>
+																<!--end::Input group-->
+																<!--begin::Description-->
+
+
+																<!--end::Description-->
+															</div>
+															<!--end::Card header-->
+														</div>
+
+														<!--end::Visite virtuelle-->
+													</div>
+												</div>
+												<!--end::Tab pane-->
+												<!--begin::Tab pane-->
+												<div class="tab-pane fade" id="Caractéristiques" role="tab-panel">
+													<div class="d-flex flex-column gap-7 gap-lg-10">
+
+													<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Caractéristiques du {{ campervan.nom }}</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+
+
+																{{ caracteristique|raw }}
+
+
+																</div>
+
+															</div>
+
+															<!--end::Card header-->
+														</div>
+													<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Motorisation</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+
+
+																{{ engine|raw }}
+
+
+																</div>
+
+															</div>
+
+															<!--end::Card header-->
+														</div>
+													<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Performances et consommation</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+
+
+																{{ performances|raw }}
+
+
+																</div>
+
+															</div>
+
+															<!--end::Card header-->
+														</div>
+													<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Dimensions</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+
+
+																{{ dimensions|raw }}
+
+
+																</div>
+
+															</div>
+
+															<!--end::Card header-->
+														</div>
+													<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Aménagement de série
+																			</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+
+
+																{{ layout|raw }}
+
+
+																</div>
+
+															</div>
+
+															<!--end::Card header-->
+														</div>
+													<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Équipements
+</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+																<div class="fv-row mb-2">
+
+
+																{{ equipements|raw }}
+
+
+																</div>
+
+															</div>
+
+															<!--end::Card header-->
+														</div>
 
 
 
-</div>
+													</div>
+												</div>
+												<!--end::Tab pane-->
+												<!--begin::Tab pane-->
+												<div class="tab-pane fade" id="Options" role="tab-panel">
+													<div class="d-flex flex-column gap-7 gap-lg-10">
+														<!--begin::Reviews-->
+
+														<!--end::Reviews-->
+													</div>
+												</div>
+												<!--end::Tab pane-->
+
+                                                <div class="tab-pane fade" id="Disponiblités" role="tab-panel">
+													<div class="d-flex flex-column gap-7 gap-lg-10">
+														<!--begin::General options-->
+														<div class="card card-flush py-4">
+															<!--begin::Card header-->
+															<div class="card-header">
+																<div class="card-title">
+																	<h2>Disponibilités en Agence</h2>
+																</div>
+															</div>
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<!--begin::Input group-->
+
+																<!--end::Input group-->
+																<!--begin::Input group-->
+																<div>
+																	<!--begin::Description-->
+                                                                {# {{ campervan.description|raw }} #}
+
+
+
+                                                        <div class="tab-content container-fluid" id="myTabContent">
+                                                          <div class="row">
+{% for agence in campervan.agence %}
+
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 {{ agence.nom }} mb-4 filtered">
+                <div class="card card-flush h-xl-100 ribbon ribbon-top ribbon-vertical">
+
+                  {% if agence.active == 0 %}
+                                                                                  <div class="ribbon-label bg-primary">ACTIVE</div>
+                                                                    {% else %}
+                                                                                <div class="ribbon-label bg-danger">INACTIVE</div>
+                                                                    {% endif %}
+
+
+												<!--begin::Body-->
+												<div class="card-body text-center pb-5">
+
+
+													<!--begin::Overlay-->
+													<a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="{{ asset('upload/' ~ agence.visuel) }}">
+														<!--begin::Image-->
+
+                                                                   {% if agence.visuel %}
+
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded mb-7" style="height: 266px;background-image:url('{{ asset('upload/' ~ agence.visuel) }}')"></div>
+
+                                                                    {% else %}
+                                                                        Aucun visuel
+                                                                    {% endif %}
+
+
+                                                        <!--end::Image-->
+														<!--begin::Action-->
+														<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+															<i class="bi bi-eye-fill fs-2x text-white"></i>
+														</div>
+														<!--end::Action-->
+													</a>
+													<!--end::Overlay-->
+													<!--begin::Info-->
+													<div class="d-flex align-items-end flex-stack mb-1">
+														<!--begin::Title-->
+														<div class="text-start">
+															<span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-4 d-block">{{ agence.nom }}</span>
+															{# <span class="text-gray-400 mt-1 fw-bold fs-6">{{ agence.description|striptags|slice(0, 50) }}</span> #}
+                                                            {# descripttion html format #}
+
+
+														</div>
+														<!--end::Title-->
+														<!--begin::Total-->
+
+														<!--end::Total-->
+													</div>
+													<!--end::Info-->
+												</div>
+												<!--end::Body-->
+												<!--begin::Footer-->
+												<div class="card-footer d-flex flex-stack pt-0">
+													<!--begin::Link-->
+													<a class="btn btn-sm btn-primary flex-shrink-0 me-2" href="{{ path('app_agence_show', {'id': agence.id}) }}" ><i class="fa fa-eye"></i> Consulter</a>
+													<a class="btn btn-sm btn-danger flex-shrink-0 me-2" href="{{ path('app_agence_edit', {'id': agence.id}) }}" ><i class="fa fa-pen"></i> Modifier</a>
+
+                                                    <!--end::Link-->
+													<!--begin::Link-->
+
+													<!--end::Link-->
+												</div>
+												<!--end::Footer-->
+											</div>
+            </div>
+        {% else %}
+
+               Aucune agence :(
+
+        {% endfor %}
+  </div>
+                                                        </div>
+
+																	<!--end::Description-->
+																</div>
+
+																<!--end::Input group-->
+															</div>
+															<!--end::Card header-->
+														</div>
+														<!--end::General options-->
+														<!--begin::Media-->
+
+
+														<!--end::Visite virtuelle-->
+													</div>
+												</div>
+											</div>
+											<!--end::Tab content-->
+
+										</div>
+										<!--end::Main column-->
+									</div>
+									<!--end::Form-->
+								</div>
+								<!--end::Content container-->
+							</div>
+
 {% endblock %}

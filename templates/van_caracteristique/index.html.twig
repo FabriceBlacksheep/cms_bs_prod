@@ -1,0 +1,37 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}VanCaracteristique index{% endblock %}
+
+{% block body %}
+    <h1>VanCaracteristique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Visuel</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for van_caracteristique in van_caracteristiques %}
+            <tr>
+                <td>{{ van_caracteristique.id }}</td>
+                <td>{{ van_caracteristique.visuel }}</td>
+                <td>{{ van_caracteristique.description }}</td>
+                <td>
+                    <a href="{{ path('app_van_caracteristique_show', {'id': van_caracteristique.id}) }}">show</a>
+                    <a href="{{ path('app_van_caracteristique_edit', {'id': van_caracteristique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_van_caracteristique_new') }}">Create new</a>
+{% endblock %}

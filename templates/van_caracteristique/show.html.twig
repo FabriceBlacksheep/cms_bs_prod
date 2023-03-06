@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VanCaracteristique{% endblock %}
+
+{% block body %}
+    <h1>VanCaracteristique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ van_caracteristique.id }}</td>
+            </tr>
+            <tr>
+                <th>Visuel</th>
+                <td>{{ van_caracteristique.visuel }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ van_caracteristique.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_van_caracteristique_index') }}">back to list</a>
+
+    <a href="{{ path('app_van_caracteristique_edit', {'id': van_caracteristique.id}) }}">edit</a>
+
+    {{ include('van_caracteristique/_delete_form.html.twig') }}
+{% endblock %}

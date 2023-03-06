@@ -39,6 +39,21 @@ class CampervanRepository extends ServiceEntityRepository
         }
     }
 
+    // get caracteristique by campervan
+    public function getCaracteristiqueByCampervan($id)
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            'SELECT c
+            FROM App\Entity\VanCaracteristique c
+            JOIN c.campervan v
+            WHERE v.id = :id'
+        )->setParameter('id', $id);
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Campervan[] Returns an array of Campervan objects
 //     */

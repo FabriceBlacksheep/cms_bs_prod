@@ -36,6 +36,24 @@ class CampervanType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+
+                // add campervan caracteristique
+                ->add('Caracteristiques',EntityType::class,[
+                    'class' => 'App\Entity\VanCaracteristique',
+                    'choice_label' => 'nom',
+                    'label' => 'Caractéristiques',
+                    'required' => false,
+                    'mapped' => true,
+                    'multiple' => false,
+                    'expanded' => true,
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ])
+
+
+
+
             // add price
             ->add('price',null,[
                 'label' => 'Prix',

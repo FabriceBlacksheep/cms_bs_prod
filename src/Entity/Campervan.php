@@ -60,6 +60,9 @@ class Campervan
     #[ORM\ManyToMany(targetEntity: Agence::class, inversedBy: 'campervans')]
     private Collection $Agence;
 
+    #[ORM\ManyToOne(inversedBy: 'campervans')]
+    private ?VanCaracteristique $Caracteristiques = null;
+
     public function __construct()
     {
         $this->Agence = new ArrayCollection();
@@ -234,6 +237,18 @@ class Campervan
     public function removeAgence(Agence $agence): self
     {
         $this->Agence->removeElement($agence);
+
+        return $this;
+    }
+
+    public function getCaracteristiques(): ?VanCaracteristique
+    {
+        return $this->Caracteristiques;
+    }
+
+    public function setCaracteristiques(?VanCaracteristique $Caracteristiques): self
+    {
+        $this->Caracteristiques = $Caracteristiques;
 
         return $this;
     }

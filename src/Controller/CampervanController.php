@@ -4,6 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Campervan;
 use App\Form\CampervanType;
+// VanCaracteristique
+use App\Entity\VanCaracteristique;
+// VanCaracteristique Repository
+use App\Repository\VanCaracteristiqueRepository;
+
 use App\Repository\CampervanRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -80,14 +85,45 @@ class CampervanController extends AbstractController
     #[Route('/{id}', name: 'app_campervan_show', methods: ['GET'])]
     public function show(Campervan $campervan): Response
     {
+
+        // retrieve caracteristique for current campervan id
+
+        // get caracteristique by id
+
+        if ($campervan->getCaracteristiques() != null) {
+            $caracteristique = $campervan->getCaracteristiques()->getDescription();
+            $engine = $campervan->getCaracteristiques()->getEngine();
+            $performances = $campervan->getCaracteristiques()->getPerformances();
+            $dimensions = $campervan->getCaracteristiques()->getDimensions();
+            $layout = $campervan->getCaracteristiques()->getLayout();
+            $equipements = $campervan->getCaracteristiques()->getEquipment();
+        } else {
+            $caracteristique = "Aucune caractéristique";
+            $engine = "Aucun moteur";
+            $performances = "Aucune performance";
+            $dimensions = "Aucune dimension";
+            $layout = "Aucun layout";
+            $equipements =  "Aucun équipement";
+        }
+
         return $this->render('campervan/show.html.twig', [
             'campervan' => $campervan,
+            'caracteristique' => $caracteristique,
+            'engine' => $engine,
+            'performances' => $performances,
+            'dimensions' => $dimensions,
+            'layout' => $layout,
+            'equipements' => $equipements
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_campervan_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
     {
+
+
+
+
         $form = $this->createForm(CampervanType::class, $campervan);
         $form->handleRequest($request);
 
@@ -131,12 +167,32 @@ class CampervanController extends AbstractController
             }
         }
 
+        // if caracteristique chosen
+        if($form->get('Caracteristiques')->getData() != null){
+            // get caracteristique chosen
+            $caracteristique = $form->get('Caracteristiques')->getData();
+            //dd($caracteristique);
+
+            // set caracteristique to camperan ManyToOne
+            // pass argument App\Entity\VanCaracteristique
+            //loop through caracteristique
+
+                $campervan->setCaracteristiques($caracteristique);
+
+
+
+
+
+
+        }
+
 
 
             $campervanRepository->save($campervan, true);
 
             return $this->redirectToRoute('app_campervan_index', [], Response::HTTP_SEE_OTHER);
         }
+
 
         return $this->renderForm('campervan/edit.html.twig', [
             'campervan' => $campervan,
