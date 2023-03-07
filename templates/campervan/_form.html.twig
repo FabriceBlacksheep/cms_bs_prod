@@ -1,5 +1,133 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {# {{ form_widget(form) }} #}
+
+    {# div class row #}
+
+    <div class="row">
+
+    <div class="col-md-3">
+    {{ form_row(form.nom) }}
+    </div>
+
+    <div class="col-md-3">
+    {{ form_row(form.idLocpro) }}
+    </div>
+
+    <div class="col-md-3">
+    {{ form_row(form.modele) }}
+    </div>
+
+
+    <div class="col-md-3">
+    {{ form_row(form.price) }}
+    </div>
+
+    <div class="col-md-12">
+    {{ form_row(form.Caracteristiques) }}
+    </div>
+
+    <div class="col-md-12">
+    {{ form_row(form.description) }}
+    </div>
+
+       <div class="col-md-12">
+    {{ form_row(form.description_EN) }}
+    </div>
+
+       <div class="col-md-12">
+    {{ form_row(form.description_DE) }}
+    </div>
+
+       <div class="col-md-12">
+    {{ form_row(form.description_NL) }}
+    </div>
+
+           <div class="col-md-12">
+    {{ form_row(form.visiteVirtuelle) }}
+    </div>
+
+
+    <div class="col-md-12 mt-4">
+  {{ form_row(form.visuel) }}
+    {# show current visuel #}
+
+    {% if campervan.visuel is not null %}
+    <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3 mt-4" data-kt-image-input="true">
+
+    <div class="image-input-wrapper w-250px h-250px" style="background-image: url({{ asset('upload/' ~ campervan.visuel) }}"></div>
+
+
+		</div>
+
+
+
+
+    {% endif %}
+
+    {# show current imgGallery #}
+
+
+
+    </div>
+
+    <div class="col-md-12">
+
+
+
+    {{ form_row(form.imgGallery) }}
+
+
+
+<div class="row mt-6">
+    {% if imgGallery is not null %}
+
+
+
+    {% for img in imgGallery %}
+
+                    <div class="col-md-3">
+											<a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="/upload/{{ img }}">
+														<!--begin::Image-->
+
+
+                             <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded mb-7" style="height: 266px;background-image:url('/upload/{{ img }}')"></div>
+
+														<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+															<i class="bi bi-eye-fill fs-2x text-white"></i>
+														</div>
+														<!--end::Action-->
+													</a>
+                          <!--end::Image-->
+
+                      <a href="#" class="btn btn-sm btn-warning deleteIMG" data-id="{{ img }}">
+                          <i class="fa fa-trash"></i> Supprimer
+                      </a>
+
+                      </div>
+
+
+    {% endfor %}
+
+    {% endif %}
+
+</div>
+
+    </div>
+
+   <div class="col-md-12">
+    {{ form_row(form.lienDescriptif) }}
+    </div>
+
+       <div class="col-md-12">
+    {{ form_row(form.agence) }}
+    </div>
+
+
+
+    </div>
+
+
+
      <button class="btn btn-lg btn-primary flex-shrink-0 me-2 mt-12 flR"><i class="fa fa-save"> </i> {{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
 
@@ -173,5 +301,61 @@ label {
 
 
 </style>
+
+<script>
+
+{# native js button class deleteIMG on click send value to controller #}
+
+const deleteIMG = document.querySelectorAll('.deleteIMG');
+
+deleteIMG.forEach((btn) => {
+
+btn.addEventListener('click', (e) => {
+
+e.preventDefault();
+
+const id = btn.getAttribute('data-id');
+
+// url from controller named app_campervan_delpicture
+const url = "{{ path('app_campervan_delpicture')|escape('js') }}";
+
+
+
+fetch(url, {
+
+method: 'POST',
+
+headers: {
+
+'Content-Type': 'application/json'
+
+},
+
+body: JSON.stringify({id: id})
+
+})
+
+.then((response) => response.json())
+
+.then((data) => {
+
+if (data.success) {
+
+btn.parentElement.remove();
+
+}
+
+})
+
+})
+
+})
+
+
+
+
+
+
+</script>
 
 {# script block #}

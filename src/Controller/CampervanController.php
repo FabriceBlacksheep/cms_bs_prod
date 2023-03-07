@@ -190,7 +190,15 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
     public function edit(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
     {
 
+        // get imgGallery from campervan if exist
 
+        if ($campervan->getImgGallery() != null) {
+            $imgGallery = $campervan->getImgGallery();
+            // get ImgFile from ImgGallery id
+            $imgGallery = $imgGallery->getImgFile();
+        } else {
+            $imgGallery = null;
+        }
 
 
         $form = $this->createForm(CampervanType::class, $campervan);
@@ -200,79 +208,73 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
 
 
  // check if a file already exists for this entity and upload form is empty
- if ($campervan->getVisuel() && !$form->get('visuel')->getData()) {
-    // set the old file name
-    $campervan->setVisuel($campervan->getVisuel());
-} else {
-    // uploaded file
-    $file = $form->get('visuel')->getData();
-    // dd($file);
-    // generate a unique name for the file before saving it
-    $fileName = md5(uniqid()).'.'.$file->guessExtension();
-    // dd($fileName);
-    // move the file to the directory where brochures are stored
-    $file->move(
-        $this->getParameter('kernel.project_dir').'/public/upload',
-        $fileName
-    );
+        if ($campervan->getVisuel() && !$form->get('visuel')->getData()) {
+            // set the old file name
+            $campervan->setVisuel($campervan->getVisuel());
+        } else {
+            // uploaded file
+            $file = $form->get('visuel')->getData();
+            // dd($file);
+            // generate a unique name for the file before saving it
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            // dd($fileName);
+            // move the file to the directory where brochures are stored
+            $file->move(
+                $this->getParameter('kernel.project_dir').'/public/upload',
+                $fileName
+            );
     // updates the 'brochureFilename' property to store the PDF file name
     // instead of its contents
-    $campervan->setVisuel($fileName);
-}
+            $campervan->setVisuel($fileName);
+                }
 
 
-// imgGallery
-
-// check if a file already exists for this entity and upload form is empty
-if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
-    // set the old file name
-    $campervan->setImgGallery($campervan->getImgGallery());
-} else {
-    // uploaded file
-    $file = $form->get('imgGallery')->getData();
-    //  dd($file);
-
-    // declare array
-    $fileNameArray = [];
-
-
-    //  loop through file
-    foreach($file as $file){
-        // generate a unique name for the file before saving it
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
-        // dd($fileName);
-        // move the file to the directory where brochures are stored
-        $file->move(
-            $this->getParameter('kernel.project_dir').'/public/upload',
-            $fileName
-
-        );
-
-        // push files in array
-        array_push($fileNameArray, $fileName);
+        // imgGallery
 
 
 
-        // type App\Entity\ImgGallery
-        $imgGallery = new ImgGallery();
-        $imgGallery->setImgFile($fileNameArray);
-        // $campervan->addImgGallery($imgGallery);
+            // check if a file already exists for this entity and upload form is empty
+            if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
+                // set the old file name
+                $campervan->setImgGallery($campervan->getImgGallery());
+            } else {
+                // uploaded file
+                $file = $form->get('imgGallery')->getData();
+                //  dd($file);
 
-        // campervan setImgGallery App\Entity\ImgGallery
-        $campervan->setImgGallery($imgGallery);
-
-
-    }
-
-            // dd($fileNameArray);
-
+                // declare array
+                $fileNameArray = [];
 
 
+                //  loop through file
+                foreach($file as $file){
+                    // generate a unique name for the file before saving it
+                    $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                    // dd($fileName);
+                    // move the file to the directory where brochures are stored
+                    $file->move(
+                        $this->getParameter('kernel.project_dir').'/public/upload',
+                        $fileName
 
-}
+                    );
+
+                    // push files in array
+                    array_push($fileNameArray, $fileName);
 
 
 
+                    // type App\Entity\ImgGallery
+                    $imgGallery = new ImgGallery();
+                    $imgGallery->setImgFile($fileNameArray);
+                    // $campervan->addImgGallery($imgGallery);
+
+                    // campervan setImgGallery App\Entity\ImgGallery
+                    $campervan->setImgGallery($imgGallery);
+
+
+                }
+
+            }
 
 
            // if agence chosen
@@ -300,11 +302,6 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
 
                 $campervan->setCaracteristiques($caracteristique);
 
-
-
-
-
-
         }
 
 
@@ -318,8 +315,12 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
         return $this->renderForm('campervan/edit.html.twig', [
             'campervan' => $campervan,
             'form' => $form,
+            'imgGallery' => $imgGallery,
+
+
+
         ]);
-    }
+}
 
     #[Route('/{id}', name: 'app_campervan_delete', methods: ['POST'])]
     public function delete(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
@@ -330,4 +331,34 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
 
         return $this->redirectToRoute('app_campervan_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    #[Route('/delpicture', name: 'app_campervan_delpicture', methods: ['POST', 'GET'])]
+
+    public function deleteImgGallery(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
+    {
+
+        // get body content
+        $content = $request->getContent();
+
+        dd($content);
+
+        // return json response 'OK'
+        $response = new JsonResponse();
+        $response->setData(['status' => 'OK']);
+
+
+        //
+
+
+
+    }
+
+
+
+
+
+
+
+
 }

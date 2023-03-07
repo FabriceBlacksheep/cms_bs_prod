@@ -94,11 +94,11 @@ class CampervanType extends AbstractType
                 ],
             ]
             )
-            ->add('options',null,[
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
+            // ->add('options',null,[
+            //     'attr' => [
+            //         'class' => 'form-control',
+            //     ],
+            // ])
             ->add('visiteVirtuelle',null,[
                 'required' => false,
                 'attr' => [
