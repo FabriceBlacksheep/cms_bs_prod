@@ -5,11 +5,17 @@
 {% block body %}
 <div class="container  mt-4 p-4">
     <h4>Edition du Campervan</h4>
-        <a href="{{ path('app_campervan_index') }}" class="btn btn-primary btn-sm mb-2">Retour</a>
-        {{ include('campervan/_delete_form.html.twig') }}
 
-    {{ include('campervan/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+    <span class="btns">
+        <a href="{{ path('app_campervan_index') }}" class="btn btn-primary btn-sm mb-2">Retour</a>
+
+
+     {{ include('campervan/_delete_form.html.twig') }}
+    </span>
+
+    {{ include('campervan/_form.html.twig', {'button_label': 'ENREGISTER'}) }}
 
 
 </div>
+
 {% endblock %}

@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+//ImgGallery
+use App\Entity\ImgGallery;
+
+
 use App\Entity\Campervan;
 use App\Form\CampervanType;
 // VanCaracteristique
@@ -68,6 +72,56 @@ class CampervanController extends AbstractController
             }
         }
 
+        // imgGallery
+
+// check if a file already exists for this entity and upload form is empty
+if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
+    // set the old file name
+    $campervan->setImgGallery($campervan->getImgGallery());
+} else {
+    // uploaded file
+    $file = $form->get('imgGallery')->getData();
+    //  dd($file);
+
+    // declare array
+    $fileNameArray = [];
+
+
+    //  loop through file
+    foreach($file as $file){
+        // generate a unique name for the file before saving it
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+        // dd($fileName);
+        // move the file to the directory where brochures are stored
+        $file->move(
+            $this->getParameter('kernel.project_dir').'/public/upload',
+            $fileName
+
+        );
+
+        // push files in array
+        array_push($fileNameArray, $fileName);
+
+
+
+        // type App\Entity\ImgGallery
+        $imgGallery = new ImgGallery();
+        $imgGallery->setImgFile($fileNameArray);
+        // $campervan->addImgGallery($imgGallery);
+
+        // campervan setImgGallery App\Entity\ImgGallery
+        $campervan->setImgGallery($imgGallery);
+
+
+    }
+
+            // dd($fileNameArray);
+
+
+
+
+}
+
 
 
 
@@ -106,6 +160,19 @@ class CampervanController extends AbstractController
             $equipements =  "Aucun équipement";
         }
 
+      if ($campervan->getImgGallery() != null) {
+        $imgGallery = $campervan->getImgGallery();
+
+        // get ImgFile from ImgGallery id
+        $imgGallery = $imgGallery->getImgFile();
+
+
+      } else {
+        $imgGallery = null;
+      }
+
+
+
         return $this->render('campervan/show.html.twig', [
             'campervan' => $campervan,
             'caracteristique' => $caracteristique,
@@ -113,7 +180,9 @@ class CampervanController extends AbstractController
             'performances' => $performances,
             'dimensions' => $dimensions,
             'layout' => $layout,
-            'equipements' => $equipements
+            'equipements' => $equipements,
+            'imgGallery' => $imgGallery,
+
         ]);
     }
 
@@ -150,6 +219,58 @@ class CampervanController extends AbstractController
     // instead of its contents
     $campervan->setVisuel($fileName);
 }
+
+
+// imgGallery
+
+// check if a file already exists for this entity and upload form is empty
+if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
+    // set the old file name
+    $campervan->setImgGallery($campervan->getImgGallery());
+} else {
+    // uploaded file
+    $file = $form->get('imgGallery')->getData();
+    //  dd($file);
+
+    // declare array
+    $fileNameArray = [];
+
+
+    //  loop through file
+    foreach($file as $file){
+        // generate a unique name for the file before saving it
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+        // dd($fileName);
+        // move the file to the directory where brochures are stored
+        $file->move(
+            $this->getParameter('kernel.project_dir').'/public/upload',
+            $fileName
+
+        );
+
+        // push files in array
+        array_push($fileNameArray, $fileName);
+
+
+
+        // type App\Entity\ImgGallery
+        $imgGallery = new ImgGallery();
+        $imgGallery->setImgFile($fileNameArray);
+        // $campervan->addImgGallery($imgGallery);
+
+        // campervan setImgGallery App\Entity\ImgGallery
+        $campervan->setImgGallery($imgGallery);
+
+
+    }
+
+            // dd($fileNameArray);
+
+
+
+
+}
+
 
 
 

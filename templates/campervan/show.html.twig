@@ -10,23 +10,16 @@
 									<div id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" data-kt-redirect="../../demo1/dist/apps/ecommerce/catalog/products.html">
 										<!--begin::Aside column-->
 										<div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
-										<div class="card card-flush py-4 bg-info">
+										<div class="card card-flush py-4 text-center">
 												<!--begin::Card header-->
-												<div class="card-header">
-													<!--begin::Card title-->
-													<div class="card-title">
-														<h2 class=" text-center">{{ campervan.nom }}</h2>
 
-													</div>
-													<!--end::Card title-->
-												</div>
 												<!--end::Card header-->
 												<!--begin::Card body-->
 												<div class="card-body text-center pt-0">
 													<!--begin::Image input-->
 													<div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
 														<!--begin::Preview existing avatar-->
-														<div class="image-input-wrapper w-150px h-150px" style="background-image: url(/upload/{{ campervan.visuel }})"></div>
+														<div class="image-input-wrapper w-250px h-250px" style="background-image: url(/upload/{{ campervan.visuel }})"></div>
 														<!--end::Preview existing avatar-->
 														<!--begin::Label-->
 
@@ -35,14 +28,16 @@
 													</div>
 													<!--end::Image input-->
 													<!--begin::Description-->
-													<div class="fs-7">{{ campervan.modele }}</div>
+													<div class="fs-7">
+													<h2 class="text-center">{{ campervan.nom }}</h2>
+													{{ campervan.modele }}</div>
 													<a class="btn btn-danger mt-4" href="{{ path('app_campervan_edit', {'id': campervan.id}) }}">Modifier</a>
 													<!--end::Description-->
 												</div>
 												<!--end::Card body-->
 											</div>
 
-	                                        <div class="card card-flush py-4 bg-info">
+	                                        <div class="card card-flush py-4">
 												<!--begin::Card header-->
 
 
@@ -60,6 +55,59 @@
 												<!--end::Card body-->
 											</div>
 
+{% if imgGallery is not empty %}
+											{#IMG GALLERY#}
+									<div class="card card-flush py-4">
+												<!--begin::Card header-->
+
+
+												<!--end::Card header-->
+												<!--begin::Card body-->
+												<div class="card-body text-center pt-0 mt-2">
+												{# if imgGallery has values #}
+
+
+ 												{% for img in imgGallery %}
+
+
+
+											<a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="/upload/{{ img }}">
+														<!--begin::Image-->
+
+
+                                            <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded mb-7" style="height: 266px;background-image:url('/upload/{{ img }}')"></div>
+
+														<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+															<i class="bi bi-eye-fill fs-2x text-white"></i>
+														</div>
+														<!--end::Action-->
+													</a>
+
+
+
+
+
+
+
+
+
+												 {% endfor %}
+
+
+
+
+
+
+
+
+
+								{#  #}
+
+												</div>
+
+												<!--end::Card body-->
+											</div>
+{% endif %}
 										</div>
 										<!--end::Aside column-->
 										<!--begin::Main column-->

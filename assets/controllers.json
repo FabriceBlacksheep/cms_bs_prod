@@ -44,6 +44,15 @@
                     "@arkounay/ux-media/src/bootstrap_modal.scss": true
                 }
             }
+        },
+        "@symfony/ux-dropzone": {
+            "dropzone": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                    "@symfony/ux-dropzone/src/style.css": true
+                }
+            }
         }
     },
     "entrypoints": []

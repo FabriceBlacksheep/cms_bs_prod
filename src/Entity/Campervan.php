@@ -33,7 +33,7 @@ class Campervan
     #[ORM\Column(type: Types::ARRAY)]
     private array $options = [];
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $visiteVirtuelle = null;
 
     #[ORM\Column(length: 255)]
@@ -62,6 +62,9 @@ class Campervan
 
     #[ORM\ManyToOne(inversedBy: 'campervans')]
     private ?VanCaracteristique $Caracteristiques = null;
+
+    #[ORM\OneToOne(inversedBy: 'campervan', cascade: ['persist', 'remove'])]
+    private ?ImgGallery $ImgGallery = null;
 
     public function __construct()
     {
@@ -249,6 +252,18 @@ class Campervan
     public function setCaracteristiques(?VanCaracteristique $Caracteristiques): self
     {
         $this->Caracteristiques = $Caracteristiques;
+
+        return $this;
+    }
+
+    public function getImgGallery(): ?ImgGallery
+    {
+        return $this->ImgGallery;
+    }
+
+    public function setImgGallery(?ImgGallery $ImgGallery): self
+    {
+        $this->ImgGallery = $ImgGallery;
 
         return $this;
     }

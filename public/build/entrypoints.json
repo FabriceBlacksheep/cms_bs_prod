@@ -2,12 +2,13 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/992.a1323528.js",
-        "/build/app.fcae2836.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-0516aa.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/app.7e8e7f6a.css"
+        "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-0516aa.css",
+        "/build/app.css"
       ]
     }
   }

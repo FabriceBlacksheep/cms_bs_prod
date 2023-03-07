@@ -1,11 +1,23 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-     <button class="btn btn-sm btn-success mt-2">{{ button_label|default('Valider') }}</button>
+     <button class="btn btn-lg btn-primary flex-shrink-0 me-2 mt-12 flR"><i class="fa fa-save"> </i> {{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
 
 {# style block #}
 
 <style>
+
+{# button css #}
+
+.suppAlign
+{
+   float:right;
+   margin-top: -45px;
+}
+
+.flR{
+  float:right
+}
 
 {# checkbox input #}
 
@@ -72,8 +84,92 @@ input[type="checkbox"]:not(:checked) + label {
 }
 
 
+{# radio #}
+
+{# checkbox input #}
+
+input[type="radio"] {
+
+margin: 5px;
+ position: absolute;
+  display: none;
+  color: #fff !important;
+
+
+}
 
 {# label of checkbox #}
+
+input[type="radio"] + label {
+
+  display: inline-block;
+  position: relative;
+  padding : 10px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #fff !important;
+  background-color: #666 !important;
+    border-radius: 5px;
+}
+
+{# checkbox input checked label #}
+
+input[type="radio"]:checked + label {
+
+  background-color: #a0c341 !important;
+  color: #fff !important;
+}
+
+{# add fa icon on checked #}
+
+input[type="radio"]:checked + label:before {
+
+  content: "\f00c";
+  font-family: FontAwesome;
+  display: inline-block;
+
+  left: 10px;
+  top: 0px;
+  color: #fff !important;
+}
+
+{# add fa icon on unchecked #}
+
+
+
+{# checkbox input unchecked label #}
+
+input[type="radio"]:not(:checked) + label {
+
+  background-color: #F1416C !important;
+  color: #fff !important;
+}
+
+{# label css #}
+
+label {
+
+  display: inline-block;
+  position: relative;
+  padding : 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+    border-radius: 5px;
+}
+
+{# label checked css #}
+
 
 
 </style>

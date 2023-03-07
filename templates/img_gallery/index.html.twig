@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ImgGallery index{% endblock %}
+
+{% block body %}
+    <h1>ImgGallery index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ImgFile</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for img_gallery in img_galleries %}
+            <tr>
+                <td>{{ img_gallery.id }}</td>
+                <td>{{ img_gallery.imgFile }}</td>
+                <td>
+                    <a href="{{ path('app_img_gallery_show', {'id': img_gallery.id}) }}">show</a>
+                    <a href="{{ path('app_img_gallery_edit', {'id': img_gallery.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_img_gallery_new') }}">Create new</a>
+{% endblock %}
