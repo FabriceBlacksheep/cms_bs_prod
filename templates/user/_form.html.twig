@@ -1,4 +1,138 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-sm btn-success mt-2">{{ button_label|default('Valider') }}</button>
+    {# {{ form_widget(form) }} #}
+
+    <div class="row">
+
+    <div class="col-md-3">
+    {{ form_row(form.Nom) }}
+    </div>
+
+    <div class="col-md-3">
+    {{ form_row(form.Prenom) }}
+    </div>
+
+        <div class="col-md-6">
+    {{ form_row(form.email) }}
+    </div>
+
+    </div>
+
+
+        <div class="row">
+
+    <div class="col-md-4">
+    {{ form_row(form.Phone) }}
+    </div>
+
+    <div class="col-md-4">
+    {{ form_row(form.roles) }}
+    </div>
+
+        <div class="col-md-4">
+    {{ form_row(form.password) }}
+    </div>
+
+        <div class="col-md-12">
+    {{ form_row(form.PictureProfile) }}
+    </div>
+
+    </div>
+
+            <div class="row">
+
+    <div class="col-md-12">
+    {{ form_row(form.agence) }}
+    </div>
+
+
+
+    </div>
+
+
+
+
+    <button class="btn  btn-success mt-12">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
+
+<style>
+{# checkbox input #}
+
+input[type="checkbox"] {
+
+margin: 5px;
+ position: absolute;
+  display: none;
+  color: #fff !important;
+
+
+}
+
+{# label of checkbox #}
+
+input[type="checkbox"] + label {
+
+  display: inline-block;
+  position: relative;
+  padding : 10px;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #fff !important;
+  background-color: #666 !important;
+    border-radius: 5px;
+}
+
+{# checkbox input checked label #}
+
+input[type="checkbox"]:checked + label {
+
+  background-color: #a0c341 !important;
+  color: #fff !important;
+}
+
+{# add fa icon on checked #}
+
+input[type="checkbox"]:checked + label:before {
+
+  content: "\f00c";
+  font-family: FontAwesome;
+  display: inline-block;
+
+  left: 10px;
+  top: 0px;
+  color: #fff !important;
+}
+
+{# add fa icon on unchecked #}
+
+
+
+{# checkbox input unchecked label #}
+
+input[type="checkbox"]:not(:checked) + label {
+
+  background-color: #F1416C !important;
+  color: #fff !important;
+}
+
+
+label {
+
+  display: inline-block;
+  position: relative;
+  padding : 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+    border-radius: 5px;
+}
+</style>

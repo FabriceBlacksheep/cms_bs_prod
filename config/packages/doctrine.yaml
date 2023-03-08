@@ -1,7 +1,8 @@
 doctrine:
     dbal:
         # url: '%env(resolve:DATABASE_URL)%'
-        url: 'mysql://root:Ps14087940!@34.155.171.58:3306/blacksheep_cms?serverVersion=mariadb-10.5.8'
+        # url: 'mysql://root:Ps14087940!@34.155.171.58:3306/blacksheep_cms?serverVersion=mariadb-10.5.8'
+        url : 'mysql://root@localhost:3306/blacksheep_cms?serverVersion=mariadb-10.5.8'
 
         # IMPORTANT: You MUST configure your server version,
         # either here or in the DATABASE_URL env var (see .env file)

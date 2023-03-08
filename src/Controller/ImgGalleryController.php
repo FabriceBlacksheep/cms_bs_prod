@@ -75,4 +75,17 @@ class ImgGalleryController extends AbstractController
 
         return $this->redirectToRoute('app_img_gallery_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/delete/{id}', name: 'app_img_gallery_delete_by_picture', methods: ['GET', 'POST'])]
+    public function deleteImg(ImgGallery $imgGallery, ImgGalleryRepository $imgGalleryRepository): Response
+    {
+
+        $data = json_decode($request->getContent(), true);
+        dd($data);
+        $id = $data['id'];
+
+        $imgGalleryRepository->remove($imgGallery, true);
+
+        return $this->redirectToRoute('app_img_gallery_index', [], Response::HTTP_SEE_OTHER);
+    }
 }

@@ -17,6 +17,8 @@ use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 // FileType
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+// PasswordType
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
 
@@ -85,6 +87,7 @@ class UserType extends AbstractType
                   'User' => 'ROLE_USER',
                   'Admin' => 'ROLE_ADMIN',
                   'Webmaster' => 'ROLE_WEBMASTER',
+                  'Client API' => 'ROLE_CLIENT_API',
                 ],
             ])
 
@@ -110,14 +113,29 @@ class UserType extends AbstractType
                 ])
 
 
+                ->add('password', PasswordType::class, [
+                    'hash_property_path' => 'password',
+                    'label' => 'Mot de passe',
+                    'mapped' => false,
+                    'attr' => [
+                        'class' => 'form-control pwd',
+                    ],
+                ])
 
-            ->add('password', null, [
-                'label' => 'Mot de passe',
-                'attr' => [
-                    'placeholder' => 'Mot de passe',
-                    'class' => 'form-control',
-                ],
-            ])
+
+
+
+
+
+            // ->add('password', null, [
+            //     'label' => 'Mot de passe',
+            //     'attr' => [
+            //         'placeholder' => 'Mot de passe',
+            //         'class' => 'form-control',
+            //     ],
+            // ])
+
+
 
         ;
 

@@ -2,3 +2,22 @@
     {{ form_widget(form) }}
     <button class="btn btn-sm btn-success mt-2">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
+
+<style>
+label {
+
+  display: inline-block;
+  position: relative;
+  padding : 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+    border-radius: 5px;
+}
+
+</style>

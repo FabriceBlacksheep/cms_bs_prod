@@ -119,8 +119,8 @@ class CampervanType extends AbstractType
                         ])
 
 
-                        ->add('imgGallery', DropzoneType::class, [
-                            'label' => 'Galerie d\'images',
+                        ->add('imgGallery', FileType::class, [
+                            'label' => 'Galerie d\'images - Choisir plusieurs images',
                             'mapped' => false,
                             'multiple' => true,
                             'required' => false,
@@ -131,11 +131,11 @@ class CampervanType extends AbstractType
                         ])
 
 
-            ->add('lienDescriptif',null,[
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
+                        ->add('lienDescriptif',null,[
+                            'attr' => [
+                                'class' => 'form-control',
+                            ],
+                        ])
 
 
                            // agence choice

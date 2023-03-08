@@ -30,6 +30,8 @@ class CampervanController extends AbstractController
         ]);
     }
 
+
+
     #[Route('/new', name: 'app_campervan_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CampervanRepository $campervanRepository): Response
     {
@@ -190,6 +192,32 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
     public function edit(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
     {
 
+
+        // check if form send parameter "pictureTodelete"
+        if ($request->request->get('pictureTodelete') != null) {
+            // get picture to delete
+            $pictureTodelete = $request->request->get('pictureTodelete');
+            // get imgGallery from campervan if exist
+            if ($campervan->getImgGallery() != null) {
+                $imgGallery = $campervan->getImgGallery();
+                // get ImgFile from ImgGallery id
+                $imgGallery = $imgGallery->getImgFile();
+                // dd($imgGallery);
+                // remove picture from array
+                $imgGallery = array_diff($imgGallery, [$pictureTodelete]);
+                // dd($imgGallery);
+                // set new array to campervan
+                $campervan->getImgGallery()->setImgFile($imgGallery);
+                // dd($campervan->getImgGallery()->getImgFile());
+                // save campervan
+                $campervanRepository->save($campervan, true);
+                // redirect to edit page
+                return $this->redirectToRoute('app_campervan_edit', ['id' => $campervan->getId()]);
+            }
+        }
+
+
+
         // get imgGallery from campervan if exist
 
         if ($campervan->getImgGallery() != null) {
@@ -227,11 +255,6 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
     // instead of its contents
             $campervan->setVisuel($fileName);
                 }
-
-
-        // imgGallery
-
-
 
             // check if a file already exists for this entity and upload form is empty
             if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
@@ -284,11 +307,11 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
             // set agence to user
             // pass argument App\Entity\Agence
          //loop through agence
-            foreach($agence as $agence){
-                // add agence to user
-                $campervan->addAgence($agence);
-            }
-        }
+                    foreach($agence as $agence){
+                        // add agence to user
+                        $campervan->addAgence($agence);
+                    }
+             }
 
         // if caracteristique chosen
         if($form->get('Caracteristiques')->getData() != null){
@@ -308,7 +331,10 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
 
             $campervanRepository->save($campervan, true);
 
-            return $this->redirectToRoute('app_campervan_index', [], Response::HTTP_SEE_OTHER);
+            // reload page
+            return $this->redirectToRoute('app_campervan_edit', ['id' => $campervan->getId()], Response::HTTP_SEE_OTHER);
+
+            // return $this->redirectToRoute('app_campervan_index', [], Response::HTTP_SEE_OTHER);
         }
 
 
@@ -320,7 +346,7 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
 
 
         ]);
-}
+    }
 
     #[Route('/{id}', name: 'app_campervan_delete', methods: ['POST'])]
     public function delete(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
@@ -331,33 +357,6 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
 
         return $this->redirectToRoute('app_campervan_index', [], Response::HTTP_SEE_OTHER);
     }
-
-
-    #[Route('/delpicture', name: 'app_campervan_delpicture', methods: ['POST', 'GET'])]
-
-    public function deleteImgGallery(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
-    {
-
-        // get body content
-        $content = $request->getContent();
-
-        dd($content);
-
-        // return json response 'OK'
-        $response = new JsonResponse();
-        $response->setData(['status' => 'OK']);
-
-
-        //
-
-
-
-    }
-
-
-
-
-
 
 
 

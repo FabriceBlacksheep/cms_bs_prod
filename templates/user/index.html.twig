@@ -129,6 +129,8 @@
                             <span class="badge bg-info text-white">{{ role }}</span>
                          {% elseif role == 'ROLE_WEBMASTER' %}
                             <span class="badge bg-warning text-white">{{ role }}</span>
+						{% elseif role == 'ROLE_CLIENT_API' %}
+                            <span class="badge bg-success text-white">{{ role }}</span>
                         {% endif %}
                     {% endfor %}
                                                         </td>

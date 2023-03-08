@@ -132,6 +132,13 @@ class UserController extends AbstractController
 
 
         $form = $this->createForm(UserType::class, $user);
+        // return password not hashed
+        $form->get('password')->setData($user->getPassword());
+
+
+
+
+
         $form->handleRequest($request);
 
 
