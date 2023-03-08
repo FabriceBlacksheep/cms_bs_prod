@@ -124,14 +124,17 @@
 														<td>
                                                                             {% for role in user.roles %}
                         {% if role == 'ROLE_ADMIN' %}
-                            <span class="badge bg-danger text-white">{{ role }}</span>
+                            <span class="badge bg-danger text-white">Administrateur</span>
                         {% elseif role == 'ROLE_USER' %}
-                            <span class="badge bg-info text-white">{{ role }}</span>
+                            <span class="badge bg-info text-white">Utilisateur</span>
                          {% elseif role == 'ROLE_WEBMASTER' %}
-                            <span class="badge bg-warning text-white">{{ role }}</span>
+                            <span class="badge bg-warning text-white">Webmaster</span>
 						{% elseif role == 'ROLE_CLIENT_API' %}
-                            <span class="badge bg-success text-white">{{ role }}</span>
+                            <span class="badge bg-success text-white">Client API</span>
+							{% elseif role == 'ROLE_CLIENT_BLACKSHEEP' %}
+                            <span class="badge bg-danger text-white">Client BLACKSHEEP VAN</span>
                         {% endif %}
+
                     {% endfor %}
                                                         </td>
 														<!--end::Role=-->

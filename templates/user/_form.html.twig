@@ -38,7 +38,17 @@
 
     </div>
 
-            <div class="row">
+    {# if role of user edited #}
+
+{# get logged in user role #}
+
+{% set role = app.user.roles[0] %}
+
+{# if role is admin #}
+
+{% if role == 'ROLE_ADMIN' %}
+
+    <div class="row">
 
     <div class="col-md-12">
     {{ form_row(form.agence) }}
@@ -48,13 +58,97 @@
 
     </div>
 
+{% endif %}
+
+
+
+    {# end if role of user edited #}
 
 
 
     <button class="btn  btn-success mt-12">{{ button_label|default('Valider') }}</button>
 {{ form_end(form) }}
 
+
+
+<script>
+{# get input password by class pwd #}
+
+var pwd = document.getElementsByClassName("pwd");
+
+{# add button after pwd #}
+
+var btnEye = document.createElement("button");
+
+{# add class to button #}
+
+btnEye.classList.add("btnEye");
+
+{# position btnEye after pwd #}
+
+pwd[0].parentNode.insertBefore(btnEye, pwd[0].nextSibling);
+btnEye.innerHTML = "Afficher";
+
+{# add icon to button #}
+
+{# add text to button #}
+
+
+{# btnEye on click reveal password #}
+
+btnEye.onclick = function(event) {
+
+  // do not submit form
+
+  event.preventDefault();
+
+
+
+if (pwd[0].type === "password") {
+
+
+
+pwd[0].type = "text";
+
+
+
+btnEye.innerHTML = "Masquer";
+
+
+
+} else {
+
+
+
+pwd[0].type = "password";
+
+
+btnEye.innerHTML = "Afficher";
+
+}
+
+}
+
+</script>
+
+
 <style>
+
+.btnEye{
+
+
+
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 12px;
+    outline: none;
+    margin-top:5px;
+
+}
 {# checkbox input #}
 
 input[type="checkbox"] {

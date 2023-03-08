@@ -27,6 +27,9 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+
+
         $builder
 
         // PictureProfile file type
@@ -76,6 +79,7 @@ class UserType extends AbstractType
 
 
             ->add('roles', ChoiceType::class, [
+                // 'is_granted_attribute' => 'ROLE_ADMIN',
                 'required' => true,
                 'label' => 'Role',
                 'attr' => [
@@ -88,12 +92,16 @@ class UserType extends AbstractType
                   'Admin' => 'ROLE_ADMIN',
                   'Webmaster' => 'ROLE_WEBMASTER',
                   'Client API' => 'ROLE_CLIENT_API',
+                  'Client BLACKSHEEP' => 'ROLE_CLIENT_BLACKSHEEP',
                 ],
             ])
 
 
-                // agence choice
+            // if user has role ROLE_ADMIN
+
+
                 ->add('agence', EntityType::class, [
+                    // 'is_granted_attribute' => 'ROLE_ADMIN',
                     // mapped => false
                     'label' => 'Choisir une agence',
                     'mapped' => true,
@@ -106,11 +114,13 @@ class UserType extends AbstractType
                     // expanded => true
                     'expanded' => true,
 
-                    "required" => true,
+                    "required" => false,
                     'attr' => [
                         'class' => 'form-control',
                     ],
                 ])
+
+
 
 
                 ->add('password', PasswordType::class, [
@@ -121,20 +131,6 @@ class UserType extends AbstractType
                         'class' => 'form-control pwd',
                     ],
                 ])
-
-
-
-
-
-
-            // ->add('password', null, [
-            //     'label' => 'Mot de passe',
-            //     'attr' => [
-            //         'placeholder' => 'Mot de passe',
-            //         'class' => 'form-control',
-            //     ],
-            // ])
-
 
 
         ;
@@ -160,6 +156,8 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+
+
         ]);
     }
 }

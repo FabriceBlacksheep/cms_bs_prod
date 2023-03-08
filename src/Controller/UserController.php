@@ -132,6 +132,19 @@ class UserController extends AbstractController
 
 
         $form = $this->createForm(UserType::class, $user);
+
+       // dd($user);
+
+
+        // if current user role is not ROLE_ADMIN hide agence field
+        // if($this->getUser()->getRoles()[0] != 'ROLE_ADMIN'){
+        //     $form->remove('agence');
+        // }
+
+
+
+
+
         // return password not hashed
         $form->get('password')->setData($user->getPassword());
 
@@ -183,13 +196,29 @@ class UserController extends AbstractController
 
             $userRepository->save($user, true);
 
+            // if current user role is not ROLE_ADMIN
+            if($this->getUser()->getRoles()[0] != 'ROLE_ADMIN'){
+                // redirect to user profile
+                return $this->redirectToRoute('app_user_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
+
+            }
+
+            else{
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+
+            }
         }
+
+        // get role of user id edited to display in form
+
+
+
 
         return $this->renderForm('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
-            'userTodelete' => $userTodelete
+            'userTodelete' => $userTodelete,
+
         ]);
     }
 
