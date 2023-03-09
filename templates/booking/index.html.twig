@@ -3,14 +3,27 @@
 {% block title %}Booking index{% endblock %}
 
 {% block body %}
-    <h1>Booking index</h1>
+    <h1>Gestion des réservations</h1>
 
-    <table class="table">
+<div class="table-responsive">
+
+ <a class="btn btn-primary mb-8" href="{{ path('app_booking_new') }}">Créer une réservation</a>
+	<table class="table table-striped gy-7 gs-7">
+		<thead>
+			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Voir</th>
                 {# dateCommande #}
                 <th>Date de la commande</th>
+                {# client #}
+                <th>Client</th>
+                {# Agence #}
+                <th>Agence</th>
+                {# campervan #}
+                <th>Campervan</th>
+                {# dateDepart #}
+
                 <th>Date de départ</th>
                 <th>Date de retour</th>
                 <th>Montant</th>
@@ -20,23 +33,51 @@
         <tbody>
         {% for booking in bookings %}
             <tr>
-                <td>{{ booking.id }}</td>
-                <td>{{ booking.DateCommande ? booking.DateCommande|date('Y-m-d') : '' }}</td>
+                <td>
+                {# link to booking #}
+                <a class="btn btn-sm btn-info" href="{{ path('app_booking_show', {'id': booking.id}) }}">
+                <i class="fa fa-eye"></i>
+                </a>
+
+                </td>
+                <td>{{ booking.DateBegin ? booking.DateBegin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                {# link to user #}
+                <a href="{{ path('app_user_show', {'id': booking.user.id}) }}">
+                {{ booking.user.prenom }} {{ booking.user.nom }}
+                </a></td>
+
+
+                <td>
+                {# agence #}
+                <a class="btn btn-sm btn-primary" href="{{ path('app_agence_show', {'id': booking.agence.id}) }}">
+                {{ booking.agence.nom }}
+                </a>
+                </td>
+
+                <td>
+                {# vehicule #}
+                <a class="btn btn-sm btn-primary" href="{{ path('app_vehicule_show', {'id': booking.vehicule.id}) }}">
+                {{ booking.vehicule.campervan.modele }}
+                </a>
+
+                </td>
+
                 <td>{{ booking.DateBegin ? booking.DateBegin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.DateEnd ? booking.DateEnd|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.Price }}</td>
                 <td>
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+                    {# <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a> #}
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_booking_edit', {'id': booking.id}) }}"><i class="fa fa-pen"></i></a>
+                    {# <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a> #}
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucune réservation</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_booking_new') }}">Create new</a>
 {% endblock %}

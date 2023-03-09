@@ -208,6 +208,47 @@
 
 
 
+<div class="table-responsive">
+	<table class="table table-striped gy-7 gs-7">
+		<thead>
+			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
+				<th>Date de commande</th>
+				<th>Agence de départ</th>
+				<th>Date de départ</th>
+				<th>Date de retour</th>
+				<th>Campervan</th>
+				<th>Montant</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+				{# booking.dateCommande format date #}
+
+				{{booking.dateCommande|date('Y-m-d')}}
+
+				</td>
+				<td>
+				{# link to agence #}
+				<a href="{{ path('app_agence_show', {'id': booking.agence.id}) }}">{{booking.agence.nom}}</a>
+				</td>
+				<td>{{booking.DateBegin|date('Y-m-d H:i:s')}}</td>
+				<td>{{booking.DateEnd|date('Y-m-d H:i:s')}}</td>
+				<td>
+				{# link to vehicule #}
+				<a href="{{ path('app_vehicule_show', {'id': booking.vehicule.id}) }}">{{booking.vehicule.campervan.modele}}</a>
+				</td>
+				<td>{{booking.price}}€</td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
 {% else %}
 
 Aucune réservation
@@ -227,20 +268,12 @@ Aucune réservation
 
 
 
+</div>
+</div>
 
 {% endif %}
-{# else #}
-
-
-
-
-
 
 {% endfor %}
 
-</div>
-
-
-</div>
-</div>
 {% endblock %}
+

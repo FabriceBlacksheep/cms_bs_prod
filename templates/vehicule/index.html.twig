@@ -3,9 +3,16 @@
 {% block title %}Vehicule index{% endblock %}
 
 {% block body %}
-    <h1>Vehicule index</h1>
 
-    <table class="table">
+
+    <h1>Liste des véhicules</h1>
+
+<div class="table-responsive">
+
+ <a class="btn btn-primary mb-8" href="{{ path('app_vehicule_new') }}">Ajouter un véhicule</a>
+	<table class="table table-striped gy-7 gs-7">
+		<thead>
+			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
         <thead>
             <tr>
                 <th>Id</th>
@@ -31,10 +38,34 @@
                 <td>{{ vehicule.dateKilometrage ? vehicule.dateKilometrage|date('Y-m-d') : '' }}</td>
                 <td>{{ vehicule.entreeParc ? vehicule.entreeParc|date('Y-m-d') : '' }}</td>
                 <td>{{ vehicule.sortieParc ? vehicule.sortieParc|date('Y-m-d') : '' }}</td>
-                <td>{{ vehicule.statut }}</td>
                 <td>
-                    <a href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}">show</a>
-                    <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}">edit</a>
+
+                {# if vehicule.statut = Réservé #}
+                {% if vehicule.statut == 'Réservé' %}
+                {# loop through vehicule.bookings #}
+                {% for booking in vehicule.bookings %}
+                    {#  link to booking id#}
+                    <a class="btn btn-sm btn-primary" href="{{ path('app_booking_show', {'id': booking.id}) }}"> Réservé
+                    {# badge warning #}
+
+
+                    </a>
+
+                {% endfor %}
+
+                {% else %}
+                    {{ vehicule.statut }}
+                {% endif %}
+
+
+
+
+
+
+                </td>
+                <td>
+                    {# <a href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}">show</a> #}
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}"><i class="fa fa-pen"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -45,5 +76,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_vehicule_new') }}">Create new</a>
+
+
+    </div>
 {% endblock %}
