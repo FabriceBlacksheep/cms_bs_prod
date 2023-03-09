@@ -52,6 +52,17 @@
 
 														{% endif %}
 
+
+
+														{% if userShow.adresse is not null %}
+
+
+														<span class="fw-bold text-gray-600 fs-6 mb-2 d-block"><i class="fa fa-map"></i> {{userShow.adresse}}
+</span>
+
+
+														{% endif %}
+
 														<!--end::Text-->
 														<!--begin::Info-->
 														<div class="d-flex align-items-center flex-wrap fw-semibold fs-7 pe-2">
@@ -84,7 +95,10 @@
 										</div>
 									</div>
 <div class="container-fluid mt-5">
+{% for role in userShow.roles %}
+{% if role == 'ROLE_ADMIN' %}
 <div class="row">
+
 
 <div class="col-md-12">
 <h1 style="font-weight:300">MES AGENCES</h1>
@@ -175,6 +189,54 @@
 
 
 </div>
+
+{% elseif role == 'ROLE_CLIENT_BLACKSHEEP' %}
+
+<div class="row">
+
+<div class="col-md-12">
+
+<h1 style="font-weight:300">MES RÉSERVATIONS</h1>
+
+{# bookings #}
+
+{% for booking in userShow.bookings %}
+
+{# if not null #}
+
+{% if booking is not null %}
+
+
+
+{% else %}
+
+Aucune réservation
+
+{% endif %}
+
+{% endfor %}
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+
+
+{% endif %}
+{# else #}
+
+
+
+
+
+
+{% endfor %}
 
 </div>
 

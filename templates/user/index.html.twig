@@ -125,8 +125,8 @@
                                                                             {% for role in user.roles %}
                         {% if role == 'ROLE_ADMIN' %}
                             <span class="badge bg-danger text-white">Administrateur</span>
-                        {% elseif role == 'ROLE_USER' %}
-                            <span class="badge bg-info text-white">Utilisateur</span>
+                        {# {% elseif role == 'ROLE_USER' %}
+                            <span class="badge bg-info text-white">Utilisateur</span> #}
                          {% elseif role == 'ROLE_WEBMASTER' %}
                             <span class="badge bg-warning text-white">Webmaster</span>
 						{% elseif role == 'ROLE_CLIENT_API' %}

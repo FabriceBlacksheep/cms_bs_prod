@@ -53,20 +53,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Phone = null;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Adresse $Adresse = null;
 
-        //  public to string return email
-        public function getIdentite(): string
-        {
-            // return Nom + Prenom
-            $identite = $this->prenom. ' ' .$this->nom;
-            return $identite;
+    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Booking::class)]
+    private Collection $bookings;
 
 
-        }
+
+
+
 
     public function __construct()
     {
         $this->Agence = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -231,9 +232,62 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getAdresse(): ?Adresse
+    {
+        return $this->Adresse;
+    }
+
+    public function setAdresse(?Adresse $Adresse): self
+    {
+        $this->Adresse = $Adresse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getUser() === $this) {
+                $booking->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->email;
+    }
+
+            //  public to string return email
+            public function getIdentite(): string
+            {
+                // return Nom + Prenom
+                $identite = $this->Prenom. ' ' .$this->Nom. ' -- ' .$this->email. ' -- ' .$this->Phone;
+                return $identite;
 
 
-
+            }
 
 
 }

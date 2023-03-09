@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Doctrine\ORM\EntityManagerInterface;
+//security annotation
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+
+// security annotation
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -127,22 +132,9 @@ class UserController extends AbstractController
         // getUserById
         $userTodelete = $userRepository->getUserById($id);
 
-        //
-
 
 
         $form = $this->createForm(UserType::class, $user);
-
-       // dd($user);
-
-
-        // if current user role is not ROLE_ADMIN hide agence field
-        // if($this->getUser()->getRoles()[0] != 'ROLE_ADMIN'){
-        //     $form->remove('agence');
-        // }
-
-
-
 
 
         // return password not hashed
@@ -193,6 +185,18 @@ class UserController extends AbstractController
                     $user->addAgence($agence);
                 }
             }
+
+
+
+            // adresse of user
+            // if form adresse is not null
+            if($form->get('adresse')->getData() != null){
+                // get adresse from form
+                $adresse = $form->get('adresse')->getData();
+                // set adresse to user
+                $user->setAdresse($adresse);
+            }
+
 
             $userRepository->save($user, true);
 

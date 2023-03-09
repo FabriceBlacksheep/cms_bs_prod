@@ -18,6 +18,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+// security annotation
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
+
 
 #[Route('/campervan')]
 class CampervanController extends AbstractController
@@ -188,6 +192,7 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}/edit', name: 'app_campervan_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
     {
@@ -348,6 +353,7 @@ if ($campervan->getImgGallery() && !$form->get('imgGallery')->getData()) {
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/{id}', name: 'app_campervan_delete', methods: ['POST'])]
     public function delete(Request $request, Campervan $campervan, CampervanRepository $campervanRepository): Response
     {

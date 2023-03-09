@@ -19,6 +19,9 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 // PasswordType
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use App\Entity\Adresse;
+// adresse form
+use App\Form\AdresseType;
 
 
 
@@ -42,6 +45,17 @@ class UserType extends AbstractType
                 'class' => 'form-control',
             ],
         ])
+
+                        // access entity adresse and add it to user
+                        ->add('adresse', AdresseType::class, [
+                            'required' => false,
+                            // mapped false
+                            'mapped' => true,
+                            'label' => 'Adresse',
+                            'attr' => [
+                                'class' => 'form-control',
+                            ],
+                        ])
 
 
             ->add('email', null, [

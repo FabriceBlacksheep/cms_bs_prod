@@ -1,27 +1,107 @@
 {% extends 'page.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}BLACKSHEEP VAN - Dashboard{% endblock %}
 
 {% block body %}
 
 
+
+
+
+{% if (app.user.roles[0] == 'ROLE_ADMIN') or  (app.user.roles[0] == 'ROLE_CLIENT_API') %}
+
 <div class="container-fluid">
 
 <div class="row">
-{# col 4 #}
-<div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-md-5 mb-xl-10">
+{# col 12 #}
+
+<div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
+<div class="card-xl-stretch me-md-6 shadow-sm">
+															<!--begin::Overlay-->
+															<a class="d-block overlay" data-fslightbox="latest-posts" href="/booking">
+																<!--begin::Image-->
+																<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('/img/booking.webp')"></div>
+																<!--end::Image-->
+																<!--begin::Action-->
+																<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+																	<i class="bi bi-eye-fill fs-2x text-white"></i>
+																</div>
+																<!--end::Action-->
+															</a>
+															<!--end::Overlay-->
+															<!--begin::Body-->
+															<div class="mt-5 p-5">
+																<!--begin::Title-->
+																<a href="/booking" class="fs-4 text-dark fw-bold text-hover-primary lh-base"><i class="fa-solid fa-house"></i> Bookings BLACKSHEEP</a>
+																<!--end::Title-->
+																<!--begin::Text-->
+																<div class="fw-semibold fs-5 text-gray-600 pt-3">Gestion des Bookings BLACKSHEEP</div>
+																<!--end::Text-->
+																<!--begin::Footer-->
+																<div class="d-flex flex-stack flex-wrap pt-4 gap-2">
+																	<!--begin::Label-->
+																	<span class="rounded border border-dashed fs-2 fw-bold text-dark py-1 px-2">
+																	<span class="fs-6 fw-semibold text-gray-400"></span></span>
+																	<!--end::Label-->
+																	<!--begin::Action-->
+																	<a href="/booking" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Consulter</a>
+																	<!--end::Action-->
+																</div>
+																<!--end::Footer-->
+															</div>
+															<!--end::Body-->
+														</div>
 
 </div>
-{# col 4 #}
-<div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-md-5 mb-xl-10">
+
+
+<div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
+<div class="card-xl-stretch me-md-6 shadow-sm">
+															<!--begin::Overlay-->
+															<a class="d-block overlay" data-fslightbox="latest-posts" href="/vehicule">
+																<!--begin::Image-->
+																<div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('/img/bgapp.jpg')"></div>
+																<!--end::Image-->
+																<!--begin::Action-->
+																<div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+																	<i class="bi bi-eye-fill fs-2x text-white"></i>
+																</div>
+																<!--end::Action-->
+															</a>
+															<!--end::Overlay-->
+															<!--begin::Body-->
+															<div class="mt-5 p-5">
+																<!--begin::Title-->
+																<a href="/vehicule" class="fs-4 text-dark fw-bold text-hover-primary lh-base"><i class="fa-solid fa-house"></i> Parc BLACKSHEEP</a>
+																<!--end::Title-->
+																<!--begin::Text-->
+																<div class="fw-semibold fs-5 text-gray-600 pt-3">Gestion du Parc BLACKSHEEP</div>
+																<!--end::Text-->
+																<!--begin::Footer-->
+																<div class="d-flex flex-stack flex-wrap pt-4 gap-2">
+																	<!--begin::Label-->
+																	<span class="rounded border border-dashed fs-2 fw-bold text-dark py-1 px-2">
+																	<span class="fs-6 fw-semibold text-gray-400"></span></span>
+																	<!--end::Label-->
+																	<!--begin::Action-->
+																	<a href="/vehicule" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i> Consulter</a>
+																	<!--end::Action-->
+																</div>
+																<!--end::Footer-->
+															</div>
+															<!--end::Body-->
+														</div>
+
 </div>
-{# col 4 #}
-<div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4 mb-md-5 mb-xl-10">
-</div>
-{# col 4 #}
+
+
+
+
 </div>
 
 </div>
+
+{% endif %}
 
 
 <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-4 mb-md-5 mb-xl-10">

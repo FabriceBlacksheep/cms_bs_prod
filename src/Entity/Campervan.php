@@ -66,9 +66,13 @@ class Campervan
     #[ORM\OneToOne(inversedBy: 'campervan', cascade: ['persist', 'remove'])]
     private ?ImgGallery $ImgGallery = null;
 
+    #[ORM\OneToMany(mappedBy: 'Campervan', targetEntity: Vehicule::class)]
+    private Collection $vehicules;
+
     public function __construct()
     {
         $this->Agence = new ArrayCollection();
+        $this->vehicules = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -264,6 +268,36 @@ class Campervan
     public function setImgGallery(?ImgGallery $ImgGallery): self
     {
         $this->ImgGallery = $ImgGallery;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicule>
+     */
+    public function getVehicules(): Collection
+    {
+        return $this->vehicules;
+    }
+
+    public function addVehicule(Vehicule $vehicule): self
+    {
+        if (!$this->vehicules->contains($vehicule)) {
+            $this->vehicules->add($vehicule);
+            $vehicule->setCampervan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicule(Vehicule $vehicule): self
+    {
+        if ($this->vehicules->removeElement($vehicule)) {
+            // set the owning side to null (unless already changed)
+            if ($vehicule->getCampervan() === $this) {
+                $vehicule->setCampervan(null);
+            }
+        }
 
         return $this;
     }

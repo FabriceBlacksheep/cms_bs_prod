@@ -34,6 +34,9 @@ class Adresse
     #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]
     private ?Agence $agence = null;
 
+    #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,5 +127,27 @@ class Adresse
     public function __toString()
     {
         return $this->number . ' ' . $this->street . ' ' . $this->zipcode . ' ' . $this->city . ' ' . $this->country;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getAdresse() !== $this) {
+            $user->setAdresse($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
     }
 }
