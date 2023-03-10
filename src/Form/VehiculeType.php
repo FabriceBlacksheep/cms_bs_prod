@@ -20,20 +20,110 @@ class VehiculeType extends AbstractType
             ->add('campervan', EntityType::class, [
                 'class' => Campervan::class,
                 'choice_label' => 'nom',
+                // autocomplete
+                'autocomplete' => true,
                 'expanded' => false,
-                'label' => false,
+                'label' => "Choix du modèle",
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
-            ->add('immatriculation')
-            ->add('DateImmatriculation')
-            ->add('numeroSerie')
-            ->add('kilometrage')
-            ->add('dateKilometrage')
-            ->add('entreeParc')
-            ->add('sortieParc')
-            ->add('statut')
+            ->add('immatriculation',
+                null,
+                [
+                    'label' => "Immatriculation",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Immatriculation',
+                    ],
+                ]
+
+
+            )
+            ->add('DateImmatriculation',
+                null,
+                [
+                    'label' => "Date d'immatriculation",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Date d\'immatriculation',
+                    ],
+                ]
+
+
+            )
+            ->add('numeroSerie',
+
+                null,
+                [
+                    'label' => "Numéro de série",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Numéro de série',
+                    ],
+                ]
+
+
+            )
+            ->add('kilometrage',
+
+                null,
+                [
+                    'label' => "Kilométrage",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Kilométrage',
+                    ],
+                ])
+            ->add('dateKilometrage',
+
+                null,
+                [
+                    'label' => "Date du kilométrage",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Date du kilométrage',
+                    ],
+                ]
+
+
+            )
+            ->add('entreeParc',
+
+                null,
+                [
+                    'label' => "Entrée dans le parc",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Entrée dans le parc',
+                    ],
+                ])
+            ->add('sortieParc',
+
+                null,
+                [
+                    'label' => "Sortie du parc",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Sortie du parc',
+                    ],
+                ]
+
+
+            )
+            ->add('statut',
+
+                null,
+                [
+                    'label' => "Statut",
+                    'attr' => [
+                        'class' => 'form-control',
+                        'placeholder' => 'Statut',
+                    ],
+                ]
+
+
+            )
         ;
     }
 

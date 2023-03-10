@@ -18,11 +18,16 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 // entity type
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+//translation
+use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
+
 class CampervanType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+
             ->add('nom',null,[
                 'attr' => [
                     'class' => 'form-control col-md-6',

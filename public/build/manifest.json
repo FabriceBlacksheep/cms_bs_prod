@@ -2,7 +2,10 @@
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
   "build/runtime.js": "/build/runtime.js",
-  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-0516aa.css": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-0516aa.css",
-  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-0516aa.js": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-0516aa.js",
-  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-629644.js": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-629644.js"
+  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-5b935b.css": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-5b935b.css",
+  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-5b935b.js": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-5b935b.js",
+  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-dafc2f.css": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-dafc2f.css",
+  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-dafc2f.js": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-dafc2f.js",
+  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-256ea5.css": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-256ea5.css",
+  "build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-256ea5.js": "/build/vendors-node_modules_arkounay_ux-collection_dist_controller_js-node_modules_arkounay_ux-colle-256ea5.js"
 }

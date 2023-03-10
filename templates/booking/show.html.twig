@@ -3,32 +3,109 @@
 {% block title %}Booking{% endblock %}
 
 {% block body %}
-    <h1>Booking</h1>
+    <h1>Booking informations</h1>
 
-    <table class="table">
+{#
+
+    {{ include('booking/_delete_form.html.twig') }} #}
+<div class="table-responsive">
+    <a class="btn btn-sm btn-primary" href="{{ path('app_booking_index') }}"><i class="fa fa-arrow-left"></i> Retour aux réservations</a>
+    <a class="btn btn-sm btn-warning float-end" href="{{ path('app_booking_edit', {'id': booking.id}) }}"><i class="fa fa-pen"></i> Modifier cette réservation</a>
+    <form method="post" action="{{ path('app_booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+    <button class="btn btn-sm btn-danger float-end mt-8"><i class="fa fa-trash"></i> Supprimer</button>
+</form>
+    <table class="table table-striped gy-7 gs-7">
+        <thead>
+            <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                <th class="min-w-50px">Booking ID</th>
+                <th class="min-w-200px">Agence de départ</th>
+                <th class="min-w-100px">Client</th>
+                <th class="min-w-200px">Véhicule</th>
+                <th class="min-w-200px">Modèle</th>
+                <th class="min-w-200px">Date de départ</th>
+                <th class="min-w-200px">Date de retour</th>
+                <th class="min-w-200px">Prix</th>
+            </tr>
+        </thead>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ booking.id }}</td>
-            </tr>
-            <tr>
-                <th>DateBegin</th>
-                <td>{{ booking.DateBegin ? booking.DateBegin|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>DateEnd</th>
+                <td>{{booking.id}}</td>
+                <td><a class="btn btn-sm btn-primary" href="{{ path('app_agence_show', {'id': booking.agence.id}) }}">
+                {{ booking.agence.nom }}
+                </a></td>
+                <td><a href="{{ path('app_user_show', {'id': booking.user.id}) }}">
+                {{ booking.user.prenom }} {{ booking.user.nom }}
+                </a></td>
+                                <td>
+                {# link to vehicule #}
+                <a class="btn btn-sm btn-primary" href="{{ path('app_vehicule_show', {'id': booking.vehicule.id}) }}">
+                {{ booking.vehicule.immatriculation }}
+
+
+                </td>
+
+                <td>
+                {# vehicule #}
+                <a class="btn btn-sm btn-primary" href="{{ path('app_vehicule_show', {'id': booking.vehicule.id}) }}">
+                {{ booking.vehicule.campervan.modele }}
+                </a>
+
+                </td>
+               <td>{{ booking.DateBegin ? booking.DateBegin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.DateEnd ? booking.DateEnd|date('Y-m-d H:i:s') : '' }}</td>
+
+                <td>{{ booking.Price }} </td>
+
             </tr>
+        </tbody>
+    </table>
+</div>
+
+{# div container fluid #}
+
+<div class="container-fluid">
+<div class="row">
+
+<div class="col-12">
+    <h2>Informations sur le client</h2>
+    <table class="table table-striped gy-7 gs-7">
+        <thead>
+            <tr class="fw-semibold fs-6 text-gray-800 border-bottom-2 border-gray-200">
+                <th class="min-w-50px">Client ID</th>
+                <th class="min-w-200px">Nom</th>
+                <th class="min-w-100px">Prénom</th>
+                <th class="min-w-200px">Email</th>
+                <th class="min-w-200px">Téléphone</th>
+                <th class="min-w-200px">Adresse</th>
+
+            </tr>
+        </thead>
+        <tbody>
             <tr>
-                <th>Price</th>
-                <td>{{ booking.Price }}</td>
+                <td>{{booking.user.id}}</td>
+                <td>{{booking.user.nom}}</td>
+                <td>{{booking.user.prenom}}</td>
+                <td>{{booking.user.email}}</td>
+                <td>{{booking.user.phone}}</td>
+                <td>{{booking.user.adresse}}</td>
+
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_booking_index') }}">back to list</a>
+</div>
+</div>
+</div>
 
-    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+{# div container fluid #}
 
-    {{ include('booking/_delete_form.html.twig') }}
+
+
+
+
+
+
 {% endblock %}
+
+

@@ -15,29 +15,37 @@
 			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
         <thead>
             <tr>
-                <th>Id</th>
+
+                <th>Modèle</th>
                 <th>Immatriculation</th>
-                <th>DateImmatriculation</th>
-                <th>NumeroSerie</th>
+                <th>Date de l'immatriculation</th>
+                <th>Numero de Serie</th>
+                {# modele #}
+
+
                 <th>Kilometrage</th>
-                <th>DateKilometrage</th>
-                <th>EntreeParc</th>
-                <th>SortieParc</th>
+                <th>Date du kilometrage</th>
+                <th>Entrée Parc</th>
+                <th>Sortie Parc</th>
                 <th>Statut</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for vehicule in vehicules %}
             <tr>
-                <td>{{ vehicule.id }}</td>
+                <td>
+                {# link to vehicule campervan modele #}
+                <a href="{{ path('app_campervan_show', {'id': vehicule.campervan.id}) }}">{{ vehicule.campervan.modele }}</a>
+
+                </td>
                 <td>{{ vehicule.immatriculation }}</td>
                 <td>{{ vehicule.DateImmatriculation ? vehicule.DateImmatriculation|date('Y-m-d') : '' }}</td>
                 <td>{{ vehicule.numeroSerie }}</td>
                 <td>{{ vehicule.kilometrage }}</td>
                 <td>{{ vehicule.dateKilometrage ? vehicule.dateKilometrage|date('Y-m-d') : '' }}</td>
                 <td>{{ vehicule.entreeParc ? vehicule.entreeParc|date('Y-m-d') : '' }}</td>
-                <td>{{ vehicule.sortieParc ? vehicule.sortieParc|date('Y-m-d') : '' }}</td>
+                <td>{{ vehicule.sortieParc ? vehicule.sortieParc|date('Y-m-d') : 'Aucune' }}</td>
                 <td>
 
                 {# if vehicule.statut = Réservé #}
@@ -45,7 +53,7 @@
                 {# loop through vehicule.bookings #}
                 {% for booking in vehicule.bookings %}
                     {#  link to booking id#}
-                    <a class="btn btn-sm btn-primary" href="{{ path('app_booking_show', {'id': booking.id}) }}"> Réservé
+                    <a class="btn btn-sm btn-danger" href="{{ path('app_booking_show', {'id': booking.id}) }}">Booking #{{booking.id}}
                     {# badge warning #}
 
 

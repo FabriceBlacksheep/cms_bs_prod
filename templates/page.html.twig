@@ -18,14 +18,17 @@
 
 
         {% block stylesheets %}
-            {# {{ encore_entry_link_tags('app') }} #}
+
             		<!--begin::Vendor Stylesheets(used for this page only)-->
-		{# <link href="/./../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="/./../assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" /> #}
+		<link href="/./../assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="/./../assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+		{{ encore_entry_link_tags('app') }}
 		<link href="/./../assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+
 		<link href="/./../assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
         {% endblock %}
 
         {% block javascripts %}
@@ -40,6 +43,14 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         		<script src="/./../assets/plugins/global/plugins.bundle.js"></script>
 		        <script src="/./../assets/js/scripts.bundle.js"></script>
+
+		<script src="/./../assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+		<script src="/./../assets/plugins/custom/datatables/datatables.bundle.js"></script>
+		<!--end::Vendors Javascript-->
+		<!--begin::Custom Javascript(used for this page only)-->
+		{# <script src="/./../assets/js/custom/apps/calendar/calendar.js"></script> #}
+
+
         {% endblock %}
     </head>
 	{% set user = app.user %}
@@ -679,6 +690,119 @@
 								<!--begin::Menu-->
 								<div class="menu menu-column menu-rounded menu-sub-indention fw-semibold px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
 <!-- MENU SIDE -->
+
+<!-- BOOKING -->
+
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+										<!--begin:Menu link-->
+										<span class="menu-link">
+											<span class="menu-icon">
+												<!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+												<span class="svg-icon svg-icon-2">
+										<i class="fa-solid fa-luggage-cart"></i>
+												</span>
+												<!--end::Svg Icon-->
+											</span>
+											<span class="menu-title">BOOKING</span>
+											<span class="menu-arrow"></span>
+										</span>
+										<!--end:Menu link-->
+										<!--begin:Menu sub-->
+										<div class="menu-sub menu-sub-accordion">
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link" href="/booking">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Liste des réservations</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link" href="/booking/new">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Créer une réservation</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+											<!--begin:Menu item-->
+
+
+											<!--end:Menu item-->
+										</div>
+										<!--end:Menu sub-->
+									</div>
+
+<!-- GESTION DU PARC -->
+
+<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+										<!--begin:Menu link-->
+										<span class="menu-link">
+											<span class="menu-icon">
+												<!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
+												<span class="svg-icon svg-icon-2">
+										<i class="fa-solid fa-van-shuttle"></i>
+												</span>
+												<!--end::Svg Icon-->
+											</span>
+											<span class="menu-title">GESTION DU PARC</span>
+											<span class="menu-arrow"></span>
+										</span>
+										<!--end:Menu link-->
+										<!--begin:Menu sub-->
+										<div class="menu-sub menu-sub-accordion">
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link" href="/vehicule">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Voir le parc</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+											<!--begin:Menu item-->
+											<div class="menu-item">
+												<!--begin:Menu link-->
+												<a class="menu-link" href="/vehicule/new">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Créer un véhicule</span>
+												</a>
+												<!--end:Menu link-->
+											</div>
+											<!--end:Menu item-->
+											<!--begin:Menu item-->
+
+
+											<!--end:Menu item-->
+										</div>
+										<!--end:Menu sub-->
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 									<!--end:Menu item-->
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -687,7 +811,7 @@
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/communication/com005.svg-->
 												<span class="svg-icon svg-icon-2">
-<i class="fa-solid fa-house"></i>
+										<i class="fa-solid fa-house"></i>
 												</span>
 												<!--end::Svg Icon-->
 											</span>
@@ -1148,7 +1272,7 @@
 								<!--begin::Copyright-->
 								<div class="text-dark order-2 order-md-1">
 									<span class="text-muted fw-semibold me-1">2023&copy;</span>
-									<a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">BLACKSHEEP</a>
+									<a href="#" target="_blank" class="text-gray-800 text-hover-primary">BLACKSHEEP VAN</a>
 								</div>
 								<!--end::Copyright-->
 								<!--begin::Menu-->

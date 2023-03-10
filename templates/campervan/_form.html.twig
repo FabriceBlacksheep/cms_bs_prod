@@ -26,19 +26,19 @@
     {{ form_row(form.Caracteristiques) }}
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-6">
     {{ form_row(form.description) }}
     </div>
 
-       <div class="col-md-12">
+       <div class="col-md-6">
     {{ form_row(form.description_EN) }}
     </div>
 
-       <div class="col-md-12">
+       <div class="col-md-6">
     {{ form_row(form.description_DE) }}
     </div>
 
-       <div class="col-md-12">
+       <div class="col-md-6">
     {{ form_row(form.description_NL) }}
     </div>
 
@@ -79,7 +79,12 @@
 
 
 <div class="row mt-6">
+{% if imgGallery is defined %}
     {% if imgGallery is not null %}
+    {# if imgGallery exists and not null#}
+
+
+
 
 
 
@@ -109,6 +114,8 @@
     {% endfor %}
 
     {% endif %}
+    {% endif %}
+
 
 </div>
 

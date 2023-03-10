@@ -187,6 +187,7 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -46674,8 +46675,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 13px !important;
   font-weight: 400;
-  /* font-family: Inter, Helvetica, "sans-serif"; */
-  font-family: 'Raleway', sans-serif;
+  font-family: Inter, Helvetica, "sans-serif";
+  /* font-family: 'Raleway', sans-serif; */
+
 
 }
 @media (max-width: 991.98px) {

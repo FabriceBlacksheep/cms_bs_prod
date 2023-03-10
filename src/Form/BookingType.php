@@ -29,6 +29,7 @@ class BookingType extends AbstractType
         ->add('user', EntityType::class, [
             'class' => User::class,
             'choice_label' => 'identite',
+            'autocomplete' => true,
             'expanded' => false,
             'label' => "Choix du client",
             'attr' => [
@@ -43,6 +44,7 @@ class BookingType extends AbstractType
                 'class' => Agence::class,
                 'choice_label' => 'nom',
                 'expanded' => false,
+                'autocomplete' => true,
                 'label' => "Agence de départ",
 
                 'attr' => [
@@ -58,6 +60,7 @@ class BookingType extends AbstractType
                 // 'choice_label' => 'immatriculation',
                 // default return to string
                 'expanded' => false,
+                'autocomplete' => true,
                 'label' => "Choix du véhicule",
                 'attr' => [
                     'class' => 'form-control',
