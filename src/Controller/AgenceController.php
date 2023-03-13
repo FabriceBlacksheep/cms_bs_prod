@@ -7,6 +7,12 @@ use App\Entity\Adresse;
 
 use App\Form\AgenceType;
 use App\Form\AdresseType;
+// company form type
+use App\Form\CompanyType;
+// company
+use App\Repository\CompanyRepository;
+use App\Entity\Company;
+
 use App\Repository\AgenceRepository;
 use App\Repository\AdresseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,6 +44,17 @@ class AgenceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // get company form
+            $company = $form->get('company')->getData();
+
+            // if company is not null agence set company
+            if ($company) {
+                $agence->setCompany($company);
+            }
+
+
+
 
 
             // uploaded file
@@ -105,6 +122,17 @@ class AgenceController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            // get company form
+            $company = $form->get('company')->getData();
+
+            // if company is not null agence set company
+            if ($company) {
+                $agence->setCompany($company);
+            }
+
+
 
             // check if a file already exists for this entity and upload form is empty
             if ($agence->getVisuel() && !$form->get('visuel')->getData()) {

@@ -36,6 +36,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 // artgris file bundle
 use Artgris\Bundle\FileManagerBundle\Form\Type\ArtgrisFileType;
+// company entity
+use App\Entity\Company;
 
 
 
@@ -44,6 +46,26 @@ class AgenceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
+        // add company entitytype
+            ->add('company', EntityType::class, [
+                // mapped => false
+                'mapped' => false,
+                'class' => Company::class,
+                // choice label nom et prenom
+                // 'choice_label' => 'nom',
+                'choice_label' => 'name',
+                // expanded => true
+                'expanded' => false,
+                'label' => false,
+                'attr' => [
+                    'class' => 'form-control',
+                    // autocomplete => true
+                    'autocomplete' => true,
+                ],
+                // autocomplete => true
+
+            ])
 
             // add user entitytype
             ->add('user', EntityType::class, [

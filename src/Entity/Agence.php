@@ -100,6 +100,11 @@ class Agence
     #[ORM\OneToMany(mappedBy: 'Agence', targetEntity: Booking::class)]
     private Collection $bookings;
 
+    #[ORM\ManyToOne(inversedBy: 'Agences')]
+    private ?Company $company = null;
+
+
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -429,6 +434,20 @@ class Agence
 
         return $this;
     }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+
 
 
 

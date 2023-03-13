@@ -4,6 +4,10 @@
  * Copyright 2011-2022 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+
+
+
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
@@ -46675,7 +46679,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 13px !important;
   font-weight: 400;
-  font-family: Inter, Helvetica, "sans-serif";
+  /* font-family: Inter, Helvetica, "sans-serif"; */
   /* font-family: 'Raleway', sans-serif; */
 
 
@@ -49550,7 +49554,7 @@ body,
 /*CUSTOM BS*/
 
 [data-kt-app-layout=light-sidebar] .app-sidebar {
-  background-color: #a0c341;
+  background-color: #7d7d7d;
   border-right: 0 !important;
 }
 
@@ -49561,4 +49565,20 @@ body,
    div[class^='col-xs'], div[class*='col-xs']{
        width: 100%;
    }
+}
+
+body{
+  font-family: 'Questrial', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Questrial', sans-serif;
+}
+
+[data-bs-theme="dark"] body{
+  color:white;
+}
+
+[data-bs-theme="dark"] p{
+  color:white;
 }

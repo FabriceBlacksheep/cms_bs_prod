@@ -37,6 +37,9 @@ class Adresse
     #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\OneToOne(mappedBy: 'Adresse', cascade: ['persist', 'remove'])]
+    private ?Company $company = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -147,6 +150,28 @@ class Adresse
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($company === null && $this->company !== null) {
+            $this->company->setAdresse(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($company !== null && $company->getAdresse() !== $this) {
+            $company->setAdresse($this);
+        }
+
+        $this->company = $company;
 
         return $this;
     }

@@ -1,0 +1,45 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}Company index{% endblock %}
+
+{% block body %}
+    <h1>Gestion des sociétés</h1>
+
+<div class="table-responsive">
+
+ <a class="btn btn-primary mb-8" href="{{ path('app_company_new') }}">Créer une société</a>
+	<table class="table table-striped gy-7 gs-7">
+		<thead>
+			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Siren</th>
+            <th>Siret</th>
+            <th>Date de création</th>
+            <th>Tva Intra</th>
+            <th>Actions</th>
+        <thead>
+        <tbody>
+        {% for company in companies %}
+            <tr>
+                <td>{{ company.id }}</td>
+                <td>{{ company.Name }}</td>
+                <td>{{ company.siren }}</td>
+                <td>{{ company.siret }}</td>
+                <td>{{ company.dateCreation ? company.dateCreation|date('Y-m-d') : '' }}</td>
+                <td>{{ company.tvaIntra }}</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="{{ path('app_company_show', {'id': company.id}) }}"><i class="fa fa-eye"></i> </a>
+                    <a class="btn btn-sm btn-danger" href="{{ path('app_company_edit', {'id': company.id}) }}"><i class="fa fa-pen"></i> </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

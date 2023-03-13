@@ -1,0 +1,31 @@
+{% extends 'page.html.twig' %}
+{% block title %}Edit Company{% endblock %}
+
+{% block body %}
+    <h1>Modifier la société</h1>
+
+    {# show flash error  #}
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+
+
+    {# delete button #}
+
+
+    <form method="post" action="{{ path('app_company_delete', {'id': company.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ company.id) }}">
+    <button class="btn btn-danger float-end"><i class="fa fa-trash"></i> Supprimer</button>
+    </form>
+
+    {{ include('company/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+
+
+
+
+{% endblock %}
