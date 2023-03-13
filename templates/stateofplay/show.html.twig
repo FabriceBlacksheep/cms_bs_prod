@@ -1,0 +1,41 @@
+{% extends 'page.html.twig' %}
+{% block title %}Stateofplay{% endblock %}
+
+{% block body %}
+    <h1>États des lieux</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ Stateofplay.id }}</td>
+            </tr>
+            <tr>
+                <th>EntryDate</th>
+                <td>{{ Stateofplay.entryDate ? Stateofplay.entryDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ExitDate</th>
+                <td>{{ Stateofplay.exitDate ? Stateofplay.exitDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>GeneralState</th>
+                <td>{{ Stateofplay.generalState }}</td>
+            </tr>
+            <tr>
+                <th>ReturnState</th>
+                <td>{{ Stateofplay.returnState }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ Stateofplay.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_Stateofplay_index') }}">back to list</a>
+
+    <a href="{{ path('app_Stateofplay_edit', {'id': Stateofplay.id}) }}">edit</a>
+
+    {{ include('Stateofplay/_delete_form.html.twig') }}
+{% endblock %}

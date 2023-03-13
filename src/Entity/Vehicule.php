@@ -46,9 +46,13 @@ class Vehicule
     #[ORM\OneToMany(mappedBy: 'Vehicule', targetEntity: Booking::class)]
     private Collection $bookings;
 
+    #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: Stateofplay::class)]
+    private Collection $Stateofplays;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
+        $this->Stateofplays = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -197,6 +201,38 @@ class Vehicule
     // public function return modele and immatriculation
     public function __toString(): string
     {
-        return $this->getCampervan()->getModele() . ' ' . $this->getImmatriculation();
+        return $this->getCampervan()->getModele() . ' || ' . $this->getImmatriculation();
     }
+
+    /**
+     * @return Collection<int, Stateofplay>
+     */
+    public function getStateofplays(): Collection
+    {
+        return $this->Stateofplays;
+    }
+
+    public function addStateofplay(Stateofplay $Stateofplay): self
+    {
+        if (!$this->Stateofplays->contains($Stateofplay)) {
+            $this->Stateofplays->add($Stateofplay);
+            $Stateofplay->setVehicule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStateofplay(Stateofplay $Stateofplay): self
+    {
+        if ($this->Stateofplays->removeElement($Stateofplay)) {
+            // set the owning side to null (unless already changed)
+            if ($Stateofplay->getVehicule() === $this) {
+                $Stateofplay->setVehicule(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

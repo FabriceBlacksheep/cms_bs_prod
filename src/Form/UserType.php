@@ -139,6 +139,8 @@ class UserType extends AbstractType
 
                 ->add('password', PasswordType::class, [
                     'hash_property_path' => 'password',
+                    // required => false
+                    'required' => false,
                     'label' => 'Mot de passe',
                     'mapped' => false,
                     'attr' => [

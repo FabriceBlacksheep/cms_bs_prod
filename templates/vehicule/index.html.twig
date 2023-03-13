@@ -39,7 +39,10 @@
                 <a href="{{ path('app_campervan_show', {'id': vehicule.campervan.id}) }}">{{ vehicule.campervan.modele }}</a>
 
                 </td>
-                <td>{{ vehicule.immatriculation }}</td>
+                <td>
+                {# link to vehicule #}
+                <a href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}">{{ vehicule.immatriculation }}</a>
+                </td>
                 <td>{{ vehicule.DateImmatriculation ? vehicule.DateImmatriculation|date('Y-m-d') : '' }}</td>
                 <td>{{ vehicule.numeroSerie }}</td>
                 <td>{{ vehicule.kilometrage }}</td>

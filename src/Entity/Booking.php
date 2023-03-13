@@ -6,6 +6,10 @@ use ApiPlatform\Metadata\ApiResource;
 use App\Repository\BookingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+// api
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 #[ApiResource]
@@ -36,6 +40,12 @@ class Booking
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?User $User = null;
+
+    #[ORM\OneToOne(inversedBy: 'booking', cascade: ['persist', 'remove'])]
+    private ?Stateofplay $Stateofplay = null;
+
+    // #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    // private ?Stateofplay $Stateofplay = null;
 
     public function getId(): ?int
     {
@@ -125,4 +135,39 @@ class Booking
 
         return $this;
     }
+
+    // public function getStateofplay(): ?Stateofplay
+    // {
+    //     return $this->Stateofplay;
+    // }
+
+    // public function setStateofplay(?Stateofplay $Stateofplay): self
+    // {
+    //     $this->Stateofplay = $Stateofplay;
+
+    //     return $this;
+    // }
+
+    public function getStateofplay(): ?Stateofplay
+    {
+        return $this->Stateofplay;
+    }
+
+    public function setStateofplay(?Stateofplay $Stateofplay): self
+    {
+        $this->Stateofplay = $Stateofplay;
+
+        return $this;
+    }
+
+    function __toString()
+    {
+        // return id and user
+        return $this->id . ' | ' . $this->User. ' | ' . $this->Vehicule;
+        //
+
+
+
+    }
+
 }

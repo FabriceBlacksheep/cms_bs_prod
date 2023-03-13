@@ -1,0 +1,10 @@
+{% extends 'page.html.twig' %}
+{% block title %}New Stateofplay{% endblock %}
+
+{% block body %}
+    <h1>Créer un état des lieux</h1>
+
+    {{ include('Stateofplay/_form.html.twig') }}
+
+    <a href="{{ path('app_Stateofplay_index') }}">back to list</a>
+{% endblock %}

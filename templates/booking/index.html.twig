@@ -31,6 +31,7 @@
                 <th>Agence</th>
 
                 <th>Immatriculation</th>
+                {# <th>État des lieux</th> #}
                 {# campervan #}
                 <th>Campervan</th>
                 {# dateDepart #}
@@ -71,6 +72,26 @@
                 {# link to vehicule #}
                 <a class="btn btn-sm btn-primary" href="{{ path('app_vehicule_show', {'id': booking.vehicule.id}) }}">
                 {{ booking.vehicule.immatriculation }}
+
+
+                </td>
+
+                {# <td> #}
+                {# link to vehicule stateofplay if exists #}
+                {# {% if booking.vehicule.stateofplay %} #}
+
+                {# loop #}
+                {# {% for stateofplay in booking.vehicule.stateofplay %} #}
+                {# link to stateofplay detail #}
+
+                {# endFor   #}
+                {# {% endfor %} #}
+
+                {# endIf   #}
+                {# {% endif %} #}
+
+
+
 
 
                 </td>

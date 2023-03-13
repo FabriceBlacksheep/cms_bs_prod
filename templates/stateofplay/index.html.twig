@@ -1,0 +1,65 @@
+{% extends 'page.html.twig' %}
+{% block title %}Stateofplay index{% endblock %}
+
+{% block body %}
+    <h1>Liste des états des lieux</h1>
+
+<div class="table-responsive">
+
+ <a class="btn btn-primary mb-8" href="{{ path('app_Stateofplay_new') }}">Créer un état des lieux</a>
+	<table class="table table-striped gy-7 gs-7">
+		<thead>
+			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
+        <thead>
+            <tr>
+                <th>Référence</th>
+                <th>Véhicule || Immatriculation </th>
+
+                <th>Booking</th>
+
+                {# dateCommande #}
+                <th>Date entrée</th>
+                {# client #}
+                <th>Date retour</th>
+                {# Agence #}
+                <th>État au départ</th>
+
+                <th>État au retour</th>
+                {# campervan #}
+                <th>Statut</th>
+                {# dateDepart #}
+
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% for Stateofplay in Stateofplays %}
+            <tr>
+                <td>{{ Stateofplay.id }}</td>
+                <td>{{ Stateofplay.vehicule }}</td>
+                <td>
+                {# link to booking id #}
+                <a href="{{ path('app_booking_show', {'id': Stateofplay.booking.id}) }}">{{ Stateofplay.booking.id }}</a>
+                </td>
+                <td>{{ Stateofplay.entryDate ? Stateofplay.entryDate|date('Y-m-d') : '' }}</td>
+                <td>{{ Stateofplay.exitDate ? Stateofplay.exitDate|date('Y-m-d') : '' }}</td>
+                <td>{{ Stateofplay.generalState }}</td>
+                <td>{{ Stateofplay.returnState }}</td>
+                <td>{{ Stateofplay.status }}</td>
+                <td>
+                    <a href="{{ path('app_Stateofplay_show', {'id': Stateofplay.id}) }}">Voir</a>
+                    <a href="{{ path('app_Stateofplay_edit', {'id': Stateofplay.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+{% endblock %}

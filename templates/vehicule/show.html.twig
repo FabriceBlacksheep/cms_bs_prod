@@ -2,9 +2,12 @@
 {% block title %}Vehicule{% endblock %}
 
 {% block body %}
-    <h1>Vehicule</h1>
+    <h1>Informations sur le véhicule</h1>
 
-    <table class="table">
+   	<table class="table table-striped gy-7 gs-7">
+		<thead>
+			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
+        <thead>
         <tbody>
             <tr>
                 <th>Id</th>
@@ -15,11 +18,11 @@
                 <td>{{ vehicule.immatriculation }}</td>
             </tr>
             <tr>
-                <th>DateImmatriculation</th>
+                <th>Date de l'immatriculation</th>
                 <td>{{ vehicule.DateImmatriculation ? vehicule.DateImmatriculation|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>NumeroSerie</th>
+                <th>Numéro de série</th>
                 <td>{{ vehicule.numeroSerie }}</td>
             </tr>
             <tr>
@@ -27,15 +30,15 @@
                 <td>{{ vehicule.kilometrage }}</td>
             </tr>
             <tr>
-                <th>DateKilometrage</th>
+                <th>Date du Kilometrage</th>
                 <td>{{ vehicule.dateKilometrage ? vehicule.dateKilometrage|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>EntreeParc</th>
+                <th>Entrée dans le parc</th>
                 <td>{{ vehicule.entreeParc ? vehicule.entreeParc|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>SortieParc</th>
+                <th>Sortie du parc prévue</th>
                 <td>{{ vehicule.sortieParc ? vehicule.sortieParc|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
@@ -45,14 +48,27 @@
                 </td>
             </tr>
             <tr>
-                <th>Réservation</th>
+                <th>Réservation(s)</th>
                 <td>
                 {# link to booking details #}
                 {# for each booking #}
 
+                {# if vehicule.statut = Réservé #}
+                {% if vehicule.statut == 'Réservé' %}
+                {# loop through vehicule.bookings #}
                 {% for booking in vehicule.bookings %}
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">{{ booking.id }}</a>
+                    {#  link to booking id#}
+                    <a class="btn btn-sm btn-danger" href="{{ path('app_booking_show', {'id': booking.id}) }}">Booking #{{booking.id}}
+                    {# badge warning #}
+
+
+                    </a>
+
                 {% endfor %}
+
+                {% else %}
+                    {{ vehicule.statut }}
+                {% endif %}
 
 
                 </td>
@@ -60,9 +76,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_vehicule_index') }}">back to list</a>
+    <a href="{{ path('app_vehicule_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}">edit</a>
+    <a href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}">Modifier</a>
 
     {{ include('vehicule/_delete_form.html.twig') }}
 {% endblock %}
