@@ -50,7 +50,7 @@ class AgenceType extends AbstractType
         // add company entitytype
             ->add('company', EntityType::class, [
                 // mapped => false
-                'mapped' => false,
+                'mapped' => true,
                 'class' => Company::class,
                 // choice label nom et prenom
                 // 'choice_label' => 'nom',
