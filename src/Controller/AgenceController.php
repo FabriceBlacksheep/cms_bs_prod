@@ -100,8 +100,17 @@ class AgenceController extends AbstractController
     #[Route('/{id}', name: 'app_agence_show', methods: ['GET'])]
     public function show(Agence $agence): Response
     {
+
+
+        // return users of this agence
+        $users = $agence->getUsers();
+
+
+
+
         return $this->render('agence/show.html.twig', [
             'agence' => $agence,
+            'users' => $users,
         ]);
     }
 
@@ -124,13 +133,30 @@ class AgenceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
 
-            // get company form
-            $company = $form->get('company')->getData();
+            // COMPANY
 
-            // if company is not null agence set company
-            if ($company) {
-                $agence->setCompany($company);
+            // check if current agence has company and compare to form company
+            if ($agence->getCompany() && $agence->getCompany() != $form->get('company')->getData()) {
+
+                $message='Attention, cette agence est déjà associée à une autre société';
+                //send alert message
+                $this->addFlash('error', $message);
+
+                // redurect to edit page with alert message
+                return $this->redirectToRoute('app_agence_edit', ['id' => $agence->getId()], Response::HTTP_SEE_OTHER);
+
+
+
+            } else {
+                // get company form
+                $company = $form->get('company')->getData();
+
+                // if company is not null agence set company
+                if ($company) {
+                    $agence->setCompany($company);
+                }
             }
+
 
 
 
@@ -226,6 +252,9 @@ class AgenceController extends AbstractController
     }
 
 
+
+    /**API */
+
     //  api platform route return adresse of agence
     #[Route('/{id}/adresse', name: 'app_agence_adresse', methods: ['GET'])]
     public function adresse(Agence $agence): Response
@@ -239,7 +268,14 @@ class AgenceController extends AbstractController
 
 
 
+    // route API to return agences by company
+    #[Route('/company/{id}', name: 'app_agence_company', methods: ['GET'])]
+    public function company(Company $company): Response
+    {
+        $agences = $company->getAgences();
 
+        return $this->json($agences, 200, [], ['groups' => 'agence:read']);
+    }
 
 
 

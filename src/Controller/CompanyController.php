@@ -51,8 +51,26 @@ class CompanyController extends AbstractController
     #[Route('/{id}', name: 'app_company_show', methods: ['GET'])]
     public function show(Company $company): Response
     {
+
+
+        // get unique users from agences of company
+        $users = new ArrayCollection();
+        foreach ($company->getAgences() as $agence) {
+            foreach ($agence->getUsers() as $user) {
+                if (!$users->contains($user)) {
+                    $users->add($user);
+                }
+            }
+        }
+
+
+
+
+
+
         return $this->render('company/show.html.twig', [
             'company' => $company,
+            'users' => $users,
         ]);
     }
 

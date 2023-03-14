@@ -5,6 +5,14 @@
 {% block body %}
 <div class="container  mt-4 p-4">
     <h4>Edition de l'Agence</h4>
+        {# show flash error  #}
+    {% for label, messages in app.flashes %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endfor %}
     {# {{agence.visuel}} #}
     {# btn back #}
     <a href="{{ path('app_agence_index') }}" class="btn btn-primary btn-sm mb-2">Retour</a>

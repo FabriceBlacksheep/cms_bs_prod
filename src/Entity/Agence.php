@@ -103,6 +103,9 @@ class Agence
     #[ORM\ManyToOne(inversedBy: 'Agences')]
     private ?Company $company = null;
 
+    #[ORM\ManyToMany(targetEntity: Vehicule::class, inversedBy: 'agences')]
+    private Collection $Vehicule;
+
 
 
     public function __construct()
@@ -110,6 +113,7 @@ class Agence
         $this->users = new ArrayCollection();
         $this->campervans = new ArrayCollection();
         $this->bookings = new ArrayCollection();
+        $this->Vehicule = new ArrayCollection();
     }
 
 
@@ -443,6 +447,30 @@ class Agence
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vehicule>
+     */
+    public function getVehicule(): Collection
+    {
+        return $this->Vehicule;
+    }
+
+    public function addVehicule(Vehicule $vehicule): self
+    {
+        if (!$this->Vehicule->contains($vehicule)) {
+            $this->Vehicule->add($vehicule);
+        }
+
+        return $this;
+    }
+
+    public function removeVehicule(Vehicule $vehicule): self
+    {
+        $this->Vehicule->removeElement($vehicule);
 
         return $this;
     }

@@ -49,10 +49,14 @@ class Vehicule
     #[ORM\OneToMany(mappedBy: 'vehicule', targetEntity: Stateofplay::class)]
     private Collection $Stateofplays;
 
+    #[ORM\ManyToMany(targetEntity: Agence::class, mappedBy: 'Vehicule')]
+    private Collection $agences;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
         $this->Stateofplays = new ArrayCollection();
+        $this->agences = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -229,6 +233,33 @@ class Vehicule
             if ($Stateofplay->getVehicule() === $this) {
                 $Stateofplay->setVehicule(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Agence>
+     */
+    public function getAgences(): Collection
+    {
+        return $this->agences;
+    }
+
+    public function addAgence(Agence $agence): self
+    {
+        if (!$this->agences->contains($agence)) {
+            $this->agences->add($agence);
+            $agence->addVehicule($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAgence(Agence $agence): self
+    {
+        if ($this->agences->removeElement($agence)) {
+            $agence->removeVehicule($this);
         }
 
         return $this;
