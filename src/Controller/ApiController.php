@@ -30,7 +30,7 @@ use Symfony\Component\Serializer\Serializer;
 
 class ApiController extends AbstractController
 {
-    #[Route('/api', name: 'app_api')]
+    #[Route('/api/v1', name: 'app_api')]
     public function index(): Response
     {
         return $this->render('api/index.html.twig', [

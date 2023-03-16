@@ -1,20 +1,125 @@
-{% extends 'base.html.twig' %}
+{% extends 'page.html.twig' %}
 
-{% block title %}Hello ApiController!{% endblock %}
+{% block title %}API - Exemples de call{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon2/www/CMS_PRODUCTION/src/Controller/ApiController.php'|file_link(0) }}">src/Controller/ApiController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon2/www/CMS_PRODUCTION/templates/api/index.html.twig'|file_link(0) }}">templates/api/index.html.twig</a></code></li>
-    </ul>
-</div>
+<h1>Exemples de call</h1>
+<h2>Campervans</h2>
+<ul>
+<li>
+/api/v1/vans/fr
+</li>
+<li>
+/api/v1/vans/en
+</li>
+<li>
+/api/v1/vans/de
+</li>
+<li>
+/api/v1/vans/nl
+</li>
+</ul>
+<pre>
+[
+	{
+		"id": 3,
+		"name": "Baroudeur California",
+		"category": "VOLKSWAGEN California T6.1",
+		"description": "<p>Das Reisemobil der Baureihe Volkswagen California T6.1 Baroudeur wird Sie mit seinem Komfort und seiner Benutzerfreundlichkeit &uuml;berraschen. Mit seinen 4 Sitzen und 4 Betten ist es ideal, um einen Roadtrip zu unternehmen und neue Ziele zu erkunden, um Erfahrungen in v&ouml;lliger Freiheit zu erleben!<\/p>",
+		"visiteVirtuelle": "http:\/\/storage.net-fs.com\/hosting\/6256320\/87\/",
+		"visuel": "41f231170e14ba6382fad7301ea86c3a.jpg",
+		"lienDescriptif": "https:\/\/admin.blacksheep-van.com\/wp-content\/uploads\/2022\/05\/fiche-technique-baroudeur-california-1.pdf",
+		"idLocpro": "INDIV_CALIF",
+		"price": "À partir de 119€\/jour",
+		"Gallery": {
+			"id": 3,
+			"imgFile": [
+				"1429dfb8368c223c110125bf85c5b3fe.webp",
+				"780ce097f8e105c5afdc4cd0eabedb19.webp",
+				"5303afd7e0799e7cc7ce79fdea089dbb.webp"
+			],
+			"campervan": "\/api\/campervans\/3"
+		}
+	}
+]
+</pre>
+<hr/>
+<h2>Agences</h2>
+<ul>
+<li>
+/api/v1/agences/fr
+</li>
+<li>
+/api/v1/agences/en
+</li>
+<li>
+/api/v1/agences/de
+</li>
+<li>
+/api/v1/agences/nl
+</li>
+</ul>
+<pre>
+[
+	{
+		"id": 47,
+		"name": "Agence LYON",
+		"description": "<p>Location de vans am&eacute;nag&eacute;s au d&eacute;part de Lyon. Lyon est la capitale gastronomique ! Cette ville est travers&eacute;e par 2 fleuves majeurs : le Rh&ocirc;ne et la Sa&ocirc;ne. Elle vous surprendra avec sa multitude de petits bouchons et ses sp&eacute;cialit&eacute;s lyonnaises. Lors de votre road-trip, suite &agrave; votre location de van am&eacute;nag&eacute; &agrave; Lyon, baladez-vous dans les pentes de la Croix-Rousse ! Grimpez jusqu&rsquo;au quartier antique et Fourvi&egrave;re ! Fourvi&egrave;re et Saint-Just font partie du patrimoine mondial de l&rsquo;Unesco. L&rsquo;&eacute;t&eacute;, prenez une dose de soleil au parc de la t&ecirc;te d&rsquo;or et faites une balade en p&eacute;dalo dans le lac ;) N&rsquo;oubliez &eacute;videmment pas de passer par la place Bellecour et de vous promener dans les rues pav&eacute;es jusqu&rsquo;&agrave; H&ocirc;tel de ville ! Vous trouverez les informations n&eacute;cessaires sur notre agence ci-dessus, pour r&eacute;server un fourgon am&eacute;nag&eacute; &agrave; Lyon, ci-dessus.<\/p>",
+		"adresse": {
+			"id": 23,
+			"number": "430",
+			"street": "Rue du Companet",
+			"zipcode": "69140",
+			"city": "RILLEUX LA PAPE",
+			"country": "FRANCE",
+			"agence": "\/api\/agences\/47",
+			"user": null,
+			"company": null
+		},
+		"telephone": "+33 9 51 38 88 15",
+		"email": "contact@blacksheep-van.com",
+		"horaires": "Du lundi au Vendredi : 09h30 - 12h00 \/ 14h00 - 18h30 Samedi (de Mai à Novembre uniquement) : 09h30 - 12h00 Dimanche : fermé Parking sur place selon disponibilités",
+		"visuel": "d979934cc483f7c01c41b6e2355897f2.jpg"
+	}
+]
+</pre>
+<hr/>
+<h2>Contenus CMS</h2>
+<ul>
+<li>
+/api/v1/content/fr
+</li>
+<li>
+/api/v1/content/en
+</li>
+<li>
+/api/v1/content/de
+</li>
+<li>
+/api/v1/content/nl
+</li>
+</ul>
+<pre>
+[
+	{
+		"id": 4,
+		"title": "Page - FAQ",
+		"description": "<p><span style=\"color:#16a085\">xxxx<\/span><\/p>",
+		"h1": "FAQ",
+		"slug": "FAQ",
+		"visuel": "2d3d6a7a772bd9369186a4a4ea856e03.webp",
+		"category": [
+			{
+				"id": 1,
+				"name": "FAQ"
+			},
+			{
+				"id": 4,
+				"name": "xxx"
+			}
+		],
+		"file": "90135cd0e5d64eccefe8879173bf74a4.pdf"
+	}
+]
+</pre>
 {% endblock %}
