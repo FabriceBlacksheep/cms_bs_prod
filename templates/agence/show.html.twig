@@ -495,6 +495,115 @@
     {# {{ include('agence/_delete_form.html.twig') }} #}
     </div>
 </div>
+
+
+
+    <div class="container-fluid mt-12">
+        <div class="row" id="list">
+<h1 style="font-weight:300">Véhicules disponibles</h1>
+
+
+{# loop throug agence vehicules #}
+<div class="table-responsive">
+
+ <a class="btn btn-primary mb-8" href="{{ path('app_vehicule_new') }}">Ajouter un véhicule</a>
+	<table class="table table-striped gy-7 gs-7">
+		<thead>
+			<tr class="fw-semibold fs-6 text-gray-800 border-bottom border-gray-200">
+        <thead>
+            <tr>
+
+                <th>Modèle</th>
+                <th>Immatriculation</th>
+                <th>Date de l'immatriculation</th>
+                <th>Numero de Serie</th>
+                {# modele #}
+
+
+                <th>Kilometrage</th>
+                <th>Date du kilometrage</th>
+                <th>Entrée Parc</th>
+                <th>Sortie Parc</th>
+                <th>Statut</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehicule in vehicules %}
+            <tr>
+                <td>
+                {# link to vehicule campervan modele #}
+                <a href="{{ path('app_campervan_show', {'id': vehicule.campervan.id}) }}">{{ vehicule.campervan.modele }}</a>
+
+                </td>
+                <td>
+                {# link to vehicule #}
+                <a href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}">{{ vehicule.immatriculation }}</a>
+                </td>
+                <td>{{ vehicule.DateImmatriculation ? vehicule.DateImmatriculation|date('Y-m-d') : '' }}</td>
+                <td>{{ vehicule.numeroSerie }}</td>
+                <td>{{ vehicule.kilometrage }}</td>
+                <td>{{ vehicule.dateKilometrage ? vehicule.dateKilometrage|date('Y-m-d') : '' }}</td>
+                <td>{{ vehicule.entreeParc ? vehicule.entreeParc|date('Y-m-d') : '' }}</td>
+                <td>{{ vehicule.sortieParc ? vehicule.sortieParc|date('Y-m-d') : 'Aucune' }}</td>
+                <td>
+
+                {# if vehicule.statut = Réservé #}
+                {% if vehicule.statut == 'Réservé' %}
+                {# loop through vehicule.bookings #}
+                {% for booking in vehicule.bookings %}
+                    {#  link to booking id#}
+                    <a class="btn btn-sm btn-danger" href="{{ path('app_booking_show', {'id': booking.id}) }}">Booking #{{booking.id}}
+                    {# badge warning #}
+
+
+                    </a>
+
+                {% endfor %}
+
+                {% else %}
+                    {{ vehicule.statut }}
+                {% endif %}
+
+
+
+
+
+
+                </td>
+                <td>
+                    {# <a href="{{ path('app_vehicule_show', {'id': vehicule.id}) }}">show</a> #}
+                    <a class="btn btn-sm btn-warning" href="{{ path('app_vehicule_edit', {'id': vehicule.id}) }}"><i class="fa fa-pen"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    </div>
+
+
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
 {# CAMPERVANS BY AGENCE #}
 
 

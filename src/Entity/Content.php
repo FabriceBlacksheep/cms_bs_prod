@@ -80,6 +80,9 @@ class Content
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $slug_NL = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $file = null;
+
     public function __construct()
     {
         $this->content = new ArrayCollection();
@@ -363,6 +366,18 @@ public function getSlugNL(): ?string
 public function setSlugNL(?string $slug_NL): self
 {
     $this->slug_NL = $slug_NL;
+
+    return $this;
+}
+
+public function getFile(): ?string
+{
+    return $this->file;
+}
+
+public function setFile(?string $file): self
+{
+    $this->file = $file;
 
     return $this;
 }

@@ -49,6 +49,19 @@ class ContentController extends AbstractController
               // updates the 'brochureFilename' property to store the PDF file name
               // instead of its contents
               $content->setVisuel($fileName);
+
+            // get file from form
+             $pjTemp = $form->get('file')->getData();
+            // if pjTemp exists generate a unique name for the file before saving it
+              $pj = md5(uniqid()).'.'.$pjTemp->guessExtension();
+
+              $pjTemp->move(
+                $this->getParameter('kernel.project_dir').'/public/upload',
+                $pj
+            );
+
+            $content->setFile($pj);
+
             $contentRepository->save($content, true);
 
             return $this->redirectToRoute('app_content_index', [], Response::HTTP_SEE_OTHER);
@@ -95,6 +108,39 @@ class ContentController extends AbstractController
                 // instead of its contents
                 $content->setVisuel($fileName);
             }
+
+
+ if ($content->getFile() && !$form->get('file')->getData()) {
+                // set the old file name
+                $content->setFile($content->getFile());
+            } else {
+        // get file from form
+        $pjTemp = $form->get('file')->getData();
+        // if pjTemp exists generate a unique name for the file before saving it
+          $pj = md5(uniqid()).'.'.$pjTemp->guessExtension();
+
+          $pjTemp->move(
+            $this->getParameter('kernel.project_dir').'/public/upload',
+            $pj
+        );
+
+        $content->setFile($pj);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             $contentRepository->save($content, true);
 

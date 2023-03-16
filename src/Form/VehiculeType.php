@@ -3,11 +3,19 @@
 namespace App\Form;
 
 use App\Entity\Vehicule;
+// agence form type
+use App\Form\AgenceType;
+// agence
+use App\Repository\AgenceRepository;
+use App\Entity\Agence;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Campervan;
+
+// access agence
+
 
 class VehiculeType extends AbstractType
 {
@@ -124,6 +132,26 @@ class VehiculeType extends AbstractType
 
 
             )
+            // agence choice list
+            ->add('agence', EntityType::class, [
+                // mapped => false
+                'label' => 'Associer une agence au véhicule',
+                'mapped' => true,
+                // multiple => true
+                'multiple' => false,
+                'class' => Agence::class,
+                // choice label nom et prenom
+                // 'choice_label' => 'nom',
+                'choice_label' => 'nom',
+                // expanded => true
+                'expanded' => true,
+
+                "required" => false,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+
         ;
     }
 

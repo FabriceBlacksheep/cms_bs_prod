@@ -154,6 +154,20 @@ class ContentType extends AbstractType
                             'class' => 'form-control',
                         ],
                     ])
+
+                       // add visuel FileType
+                       ->add('file', FileType::class, [
+                        'data_class' => null,
+                        'mapped' => false,
+                        'required' => false,
+                        'label' => 'Pièce jointe',
+                        'attr' => [
+                            'class' => 'form-control',
+                        ],
+                    ])
+
+
+
         ;
     }
 

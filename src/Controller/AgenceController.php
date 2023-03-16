@@ -105,12 +105,16 @@ class AgenceController extends AbstractController
         // return users of this agence
         $users = $agence->getUsers();
 
+        // return vehicules of this agence
+        $vehicules = $agence->getVehicules();
+
 
 
 
         return $this->render('agence/show.html.twig', [
             'agence' => $agence,
             'users' => $users,
+            'vehicules' => $vehicules,
         ]);
     }
 

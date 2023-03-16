@@ -95,10 +95,6 @@ class CompanyController extends AbstractController
                     // company name where agence is already attached
                     $companyName = $agence->getCompany()->getName();
 
-
-
-
-
                     $message = $agence->getNom() . ' est déjà rattachée à la société ' . $companyName . '.';
 
                     $this->addFlash('error', $message);
